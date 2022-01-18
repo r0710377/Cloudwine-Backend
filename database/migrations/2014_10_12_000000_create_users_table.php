@@ -14,13 +14,23 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->id();     // shorthand for $table->bigIncrements('id');
+            $table->foreignId('organization_id');
+            $table->string('first_name');
+            $table->string('surname');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('gsm')->unique()->nullable();
             $table->string('password');
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_superadmin')->default(false);
+            $table->boolean('can_message')->default(false);
             $table->rememberToken();
             $table->timestamps();
+
+            // Foreign key relation
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 
