@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class WeatherStation extends Model
 {
+    /*** The attributes that are mass assignable.*/
+    protected $fillable = [
+        'name',
+        'gsm',
+        'relais_name',
+        'latitude',
+        'longitude',
+        'is_active',
+    ];
+
     public function configuration()
     {
         return $this->hasOne('App\Configuration');

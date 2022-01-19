@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class GraphType extends Model
 {
+    /*** The attributes that are mass assignable.*/
+    protected $fillable = [
+        'name'
+    ];
+
     public function values()
     {
         return $this->hasMany('App\Value');
