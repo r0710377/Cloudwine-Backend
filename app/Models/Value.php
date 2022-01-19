@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Value extends Model
 {
+    /*** The attributes that are mass assignable.*/
+    protected $fillable = [
+        'weather_station_id',
+        'graph_type_id',
+        'value',
+        'timestamp'
+    ];
 
     public function weatherStation()
     {

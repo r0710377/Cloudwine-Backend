@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Graph extends Model
 {
+    /*** The attributes that are mass assignable.*/
+    protected $fillable = [
+        'graph_type_id',
+        'weather_station_user_id',
+        'timeframe'
+    ];
+
     public function weatherStationUser()
     {
         return $this->belongsTo('App\WeatherStationUser')->withDefault();

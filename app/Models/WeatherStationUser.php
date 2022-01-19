@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class WeatherStationUser extends Model
 {
+    /*** The attributes that are mass assignable.*/
+    protected $fillable = [
+        'weather_station_id',
+        'user_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User')->withDefault();

@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Models\Organization;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+// ORGANIZATION
+Route::get('organizations', 'OrganizationController@index');
+Route::get('organizations/{organization}', 'OrganizationController@show');
+Route::post('organizations', 'OrganizationController@store');
+Route::put('organizations/{organization}', 'OrganizationController@update');
+//Route::delete('organizations/{organization}', 'OrganizationController@delete');
+
