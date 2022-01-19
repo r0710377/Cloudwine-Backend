@@ -26,7 +26,7 @@ class OrganizationController extends Controller
     public function update(Request $request, Organization $organization)
     {
         $organization->update($request->all());
-        return respone()->json($organization,200); //200 --> OK, The standard success code and default option
+        return response()->json($organization,200); //200 --> OK, The standard success code and default option
     }
 
 //    public function delete(Organization $organization)
