@@ -12,6 +12,11 @@ class GraphType extends Model
         'name'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function values()
     {
         return $this->hasMany('App\Value');

@@ -14,6 +14,11 @@ class Graph extends Model
         'timeframe'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function weatherStationUser()
     {
         return $this->belongsTo('App\WeatherStationUser')->withDefault();

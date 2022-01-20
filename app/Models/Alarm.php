@@ -18,6 +18,11 @@ class Alarm extends Model
         'is_notification',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function weatherStation()
     {
         return $this->belongsTo('App\WheaterStation')->withDefault();

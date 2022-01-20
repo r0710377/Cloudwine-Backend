@@ -23,6 +23,10 @@ Route::get('users/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('users', 'App\Http\Controllers\UserController@store');
 Route::put('users/{user}', 'App\Http\Controllers\UserController@update');
 
+// VALUE
+Route::get('values/{weather_station_id}', 'App\Http\Controllers\ValueController@index');
+Route::get('values/{value}', 'App\Http\Controllers\ValueController@show');
+
 
 // WEATHERSTATION
 Route::get('weatherstations', 'App\Http\Controllers\WeatherstationController@index');
@@ -37,9 +41,3 @@ Route::get('weatherStationUsers/{weatherStationUser}', 'App\Http\Controllers\Wea
 Route::post('weatherStationUsers', 'App\Http\Controllers\WeatherStationUserController@store');
 Route::put('weatherStationUsers/{weatherStationUser}', 'App\Http\Controllers\WeatherStationUserController@update');
 
-
-// CONFIGURATION
-Route::get('configurations', 'App\Http\Controllers\ConfigurationController@index');
-Route::get('configurations/{configuration}', 'App\Http\Controllers\ConfigurationController@show');
-Route::post('configurations', 'App\Http\Controllers\ConfigurationController@store');
-Route::put('configurations/{configuration}', 'App\Http\Controllers\ConfigurationController@update');

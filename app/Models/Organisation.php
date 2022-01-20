@@ -16,6 +16,10 @@ class Organisation extends Model
         'country',
         'is_active'
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     public function users()
     {

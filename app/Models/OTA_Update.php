@@ -13,6 +13,10 @@ class OTA_Update extends Model
         'bin_file_path',
         'name'
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     use HasFactory;
 }
