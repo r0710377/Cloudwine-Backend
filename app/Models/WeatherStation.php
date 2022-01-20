@@ -10,16 +10,21 @@ class WeatherStation extends Model
     /*** The attributes that are mass assignable.*/
     protected $fillable = [
         'name',
+        'organisation_id',
         'gsm',
         'relais_name',
         'latitude',
         'longitude',
         'is_active',
+        'is_public',
+        'is_location_alarm',
+        'is_no_data_alarm',
+        'number_of_cycles'
     ];
 
-    public function configuration()
+    public function alarms()
     {
-        return $this->hasOne('App\Configuration');
+        return $this->hasMany('App\Alarm');
     }
 
     public function values()
@@ -30,6 +35,12 @@ class WeatherStation extends Model
     public function weatherStationUsers()
     {
         return $this->hasMany('App\WeatherStationUser');
+    }
+
+
+    public function organisation()
+    {
+        return $this->belongsTo('App\Organisation')->withDefault();
     }
 
 }

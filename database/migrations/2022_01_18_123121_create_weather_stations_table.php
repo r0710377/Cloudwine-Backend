@@ -15,13 +15,22 @@ class CreateWeatherStationsTable extends Migration
     {
         Schema::create('weather_stations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('organisation_id')->nullable();
             $table->string('name');
             $table->string('gsm')->unique();
             $table->string('relais_name')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_public')->default(false);
+            $table->boolean('is_location_alarm')->default(false);
+            $table->boolean('is_no_data_alarm')->default(false);
+            $table->unsignedInteger('number_of_cycles')->nullable();
             $table->timestamps();
+
+            // Foreign key relation
+            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

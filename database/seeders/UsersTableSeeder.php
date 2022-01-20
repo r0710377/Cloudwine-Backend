@@ -25,8 +25,9 @@ class UsersTableSeeder extends Seeder
         // will be too slow.
         $password = Hash::make('test1');
 
+        //SUPERADMIN
         User::create([
-            'organization_id' => null,
+            'organisation_id' => null,
             'first_name' => 'SuperAdmin',
             'surname' => '',
             'email' => 'superdmin@test.com',
@@ -38,8 +39,9 @@ class UsersTableSeeder extends Seeder
             'can_message' => true,
         ]);
 
+        //ADMIN ORGANISATIE 1
         User::create([
-            'organization_id' => 1,
+            'organisation_id' => 1,
             'first_name' => 'Administrator',
             'surname' => '1',
             'email' => 'admin@admin.com',
@@ -55,7 +57,7 @@ class UsersTableSeeder extends Seeder
         for ($i = 0; $i < 3; $i++) {
             User::create([
 //                'organization_id' => $faker->numberBetween(1, 3),
-                'organization_id' => 1,
+                'organisation_id' => 1,
                 'first_name' => $faker->firstName,
                 'surname' => $faker->lastName,
                 'email' => $faker->email,
@@ -70,7 +72,7 @@ class UsersTableSeeder extends Seeder
 
         //ADMIN ORGANISATIE 2
         User::create([
-            'organization_id' => 2,
+            'organisation_id' => 2,
             'first_name' => 'Administrator',
             'surname' => '2',
             'email' => 'admin2@admin2.com',
@@ -85,7 +87,7 @@ class UsersTableSeeder extends Seeder
         //ORGANISATIE 2
         for ($i = 0; $i < 3; $i++) {
             User::create([
-                'organization_id' => 2,
+                'organisation_id' => 2,
                 'first_name' => $faker->firstName,
                 'surname' => $faker->lastName,
                 'email' => $faker->email,
@@ -100,7 +102,7 @@ class UsersTableSeeder extends Seeder
 
         // ADMIN ORGANISATIE 3
         User::create([
-            'organization_id' => 3,
+            'organisation_id' => 3,
             'first_name' => 'Administrator',
             'surname' => '3',
             'email' => 'admin3@admin3.com',
@@ -115,7 +117,7 @@ class UsersTableSeeder extends Seeder
         //ORGANISATIE 3
         for ($i = 0; $i < 8; $i++) {
             User::create([
-                'organization_id' => 3,
+                'organisation_id' => 3,
                 'first_name' => $faker->firstName,
                 'surname' => $faker->lastName,
                 'email' => $faker->email,

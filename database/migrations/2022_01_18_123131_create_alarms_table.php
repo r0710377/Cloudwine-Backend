@@ -15,7 +15,7 @@ class CreateAlarmsTable extends Migration
     {
         Schema::create('alarms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('configuration_id');
+            $table->foreignId('weather_station_id');
             $table->string('name');
             $table->boolean('is_active')->default(false);
             $table->integer('min')->nullable();
@@ -25,7 +25,7 @@ class CreateAlarmsTable extends Migration
             $table->timestamps();
 
             // Foreign key relation
-            $table->foreign('configuration_id')->references('id')->on('configurations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('weather_station_id')->references('id')->on('weather_stations')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }
