@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 use App\Models\Organisation;
 
@@ -9,6 +10,13 @@ class OrganisationController extends Controller
 {
     public function index()
     {
+        if(request()->order){
+            $organisation = Organisation::orderBy('name', request()->order)->get();
+            if (request()->active){
+                $organisation = Organisation::orderBy('name', request()->order)->where('is_active', request()->active)->get();
+            }
+            return response()->json($organisation,200);
+        }
         return Organisation::all();
     }
 
