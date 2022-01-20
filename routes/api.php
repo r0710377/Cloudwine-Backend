@@ -19,7 +19,7 @@ Route::put('organisations/{organisation}', 'App\Http\Controllers\OrganisationCon
 
 // USER
 Route::get('users', 'App\Http\Controllers\UserController@index');
-Route::get('users/{user}', 'App\Http\Controllers\UserController@show');
+Route::get('users/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('users', 'App\Http\Controllers\UserController@store');
 Route::put('users/{user}', 'App\Http\Controllers\UserController@update');
 

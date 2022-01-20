@@ -7,14 +7,47 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return User::all();
+        $organisation = $request->get('organisation');
+        $order = $request->get('order');
+        $status = $request->get('active');
+
+        $users = User::where('organisation_id', $organisation)->get();
+
+        if($organisation){
+            if($status == 2){
+                $users = User::where('organisation_id', $organisation)->get();
+            }
+            else if($status == '0'){
+                $users = User::where('organisation_id', $organisation)->where('is_active',0)->get();
+            }
+            else {
+                $users = User::where('organisation_id', $organisation)->where('is_active',1)->get();
+            }
+            return response()->json($users,200);
+        }
+
+        if($order){
+            if($status == 2){
+                $users = User::orderBy('first_name', $order)->get();
+            }
+            else if($status == '0'){
+                $users = User::orderBy('first_name', $order)->where('is_active',0)->get();
+            }
+            else {
+                $users = User::orderBy('first_name', $order)->where('is_active',1)->get();
+            }
+            return response()->json($users,200);
+        }
+
+        $users = User::orderBy('organisation_id','asc')->where('is_active',1)->get();
+        return response()->json($users,200);
     }
 
-    public function show(User $user)
+    public function show($id)
     {
-        return $user;
+        return User::find($id);
     }
 
     public function store(Request $request)
