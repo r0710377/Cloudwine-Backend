@@ -14,11 +14,11 @@ class GraphType extends Model
 
     public function values()
     {
-        return $this->hasMany('App\Value');
+        return $this->hasMany('App\Models\Value');
     }
 
     public function graphs()
     {
-        return $this->hasMany('App\Graph');
+        return $this->hasMany('App\Models\Graph');
     }
 }

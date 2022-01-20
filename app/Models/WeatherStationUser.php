@@ -15,17 +15,17 @@ class WeatherStationUser extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User')->withDefault();
+        return $this->belongsTo('App\Models\User')->withDefault();
     }
 
     public function graphs()
     {
-        return $this->hasMany('App\Graph');
+        return $this->hasMany('App\Models\Graph');
     }
 
     public function weatherStation()
     {
-        return $this->belongsTo('App\WeatherStation')->withDefault();
+        return $this->belongsTo('App\Models\WeatherStation')->withDefault();
     }
 
 }
