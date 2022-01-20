@@ -9,6 +9,10 @@ class WeatherStationController extends Controller
 {
     public function index()
     {
+        if (request()->active){
+            $weatherstation = WeatherStation::where('is_active', request()->active)->get();
+            return response()->json($weatherstation,200);
+        }
         return WeatherStation::all();
     }
 
