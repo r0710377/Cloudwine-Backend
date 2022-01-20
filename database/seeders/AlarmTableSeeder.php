@@ -22,7 +22,7 @@ class AlarmTableSeeder extends Seeder
 
         for ($i = 0; $i < 3; $i++) {
             Alarm::create([
-                'configuration_id' => 1,
+                'weather_station_id' => 1,
                 'name' => $names[$i],
                 'is_active' => false,
                 'min' => null,
@@ -34,7 +34,7 @@ class AlarmTableSeeder extends Seeder
 
          for ($i = 0; $i < 3; $i++) {
              Alarm::create([
-                 'configuration_id' => 2,
+                 'weather_station_id' => 2,
                  'name' => $names[$i],
                  'is_active' => false,
                  'min' => null,
@@ -46,7 +46,7 @@ class AlarmTableSeeder extends Seeder
 
           for ($i = 0; $i < 3; $i++) {
               Alarm::create([
-                  'configuration_id' => 3,
+                  'weather_station_id' => 3,
                   'name' => $names[$i],
                   'is_active' => false,
                   'min' => null,
@@ -55,5 +55,17 @@ class AlarmTableSeeder extends Seeder
                   'is_notification' => false,
               ]);
           }
+
+        for ($i = 0; $i < 3; $i++) {
+            Alarm::create([
+                'weather_station_id' => 4,
+                'name' => $names[$i],
+                'is_active' => false,
+                'min' => null,
+                'max' => null,
+                'is_relais' => false,
+                'is_notification' => false,
+            ]);
+        }
     }
 }

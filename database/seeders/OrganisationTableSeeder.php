@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Organization;
+use App\Models\Organisation;
 use Illuminate\Database\Seeder;
 
-class OrganizationTableSeeder extends Seeder
+class OrganisationTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class OrganizationTableSeeder extends Seeder
         //This resets the table, deleting all the data everytime the function is called.
 //        Organization::truncate();
 
-        Organization::create([
+        Organisation::create([
             'name' => 'Wijnbouwer',
             'address' => 'Wijnstraat 2',
             'postal_code' => '2450',
@@ -25,7 +25,7 @@ class OrganizationTableSeeder extends Seeder
             'country' => 'België',
         ]);
 
-        Organization::create([
+        Organisation::create([
             'name' => 'VinhoMaker',
             'address' => 'vinholaan 8',
             'postal_code' => '2440',
@@ -33,7 +33,7 @@ class OrganizationTableSeeder extends Seeder
             'country' => 'België',
         ]);
 
-        Organization::create([
+        Organisation::create([
             'name' => 'Grapes4You',
             'address' => 'Grapestraat 74',
             'postal_code' => '4587',

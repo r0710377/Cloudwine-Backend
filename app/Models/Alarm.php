@@ -9,7 +9,7 @@ class Alarm extends Model
 {
     /*** The attributes that are mass assignable.*/
     protected $fillable = [
-        'configuration_id',
+        'weather_station_id',
         'name',
         'is_active',
         'min',
@@ -18,9 +18,9 @@ class Alarm extends Model
         'is_notification',
     ];
 
-    public function configuration()
+    public function weatherStation()
     {
-        return $this->belongsTo('App\Configuration')->withDefault();
+        return $this->belongsTo('App\WheaterStation')->withDefault();
     }
 
 }

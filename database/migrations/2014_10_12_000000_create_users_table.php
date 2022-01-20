@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();     // shorthand for $table->bigIncrements('id');
-            $table->foreignId('organization_id')->nullable();
+            $table->foreignId('organisation_id')->nullable();
             $table->string('first_name');
             $table->string('surname')->nullable();
             $table->string('email')->unique();
@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             // Foreign key relation
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

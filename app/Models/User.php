@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     /*** The attributes that are mass assignable.*/
     protected $fillable = [
-        'organization_id',
+        'organisation_id',
         'first_name',
         'surname',
         'email',
@@ -32,9 +32,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function organization()
+    public function organisation()
     {
-        return $this->belongsTo('App\Organization')->withDefault();   // a user belongs to an organization
+        return $this->belongsTo('App\Organisation')->withDefault();   // a user belongs to an organization
     }
 
     public function weatherStationUsers()
