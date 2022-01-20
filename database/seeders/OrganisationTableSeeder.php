@@ -23,6 +23,7 @@ class OrganisationTableSeeder extends Seeder
             'postal_code' => '2450',
             'city' => 'Balen',
             'country' => 'België',
+            'is_active' => true
         ]);
 
         Organisation::create([
@@ -31,6 +32,7 @@ class OrganisationTableSeeder extends Seeder
             'postal_code' => '2440',
             'city' => 'Geel',
             'country' => 'België',
+            'is_active' => true
         ]);
 
         Organisation::create([
@@ -39,6 +41,7 @@ class OrganisationTableSeeder extends Seeder
             'postal_code' => '4587',
             'city' => 'Deurne',
             'country' => 'België',
+            'is_active' => true
         ]);
     }
 }

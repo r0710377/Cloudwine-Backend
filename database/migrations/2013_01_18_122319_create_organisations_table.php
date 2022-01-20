@@ -20,6 +20,7 @@ class CreateOrganisationsTable extends Migration
             $table->string('postal_code');
             $table->string('city');
             $table->string('country');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
