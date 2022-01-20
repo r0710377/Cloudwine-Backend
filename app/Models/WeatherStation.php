@@ -24,23 +24,23 @@ class WeatherStation extends Model
 
     public function alarms()
     {
-        return $this->hasMany('App\Alarm');
+        return $this->hasMany('App\Models\Alarm');
     }
 
     public function values()
     {
-        return $this->hasMany('App\Value');
+        return $this->hasMany('App\Models\Value');
     }
 
     public function weatherStationUsers()
     {
-        return $this->hasMany('App\WeatherStationUser');
+        return $this->hasMany('App\Models\WeatherStationUser');
     }
 
 
     public function organisation()
     {
-        return $this->belongsTo('App\Organisation')->withDefault();
+        return $this->belongsTo('App\Models\Organisation')->withDefault();
     }
 
 }

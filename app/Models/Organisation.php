@@ -19,12 +19,12 @@ class Organisation extends Model
 
     public function users()
     {
-        return $this->hasMany('App\User');   // a genre has many records
+        return $this->hasMany('App\Models\User');   // a genre has many records
     }
 
     public function weatherStations()
     {
-        return $this->hasMany('App\WeatherStation');   // a genre has many records
+        return $this->hasMany('App\Models\WeatherStation');   // a genre has many records
     }
 
 }

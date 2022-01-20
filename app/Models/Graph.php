@@ -16,10 +16,10 @@ class Graph extends Model
 
     public function weatherStationUser()
     {
-        return $this->belongsTo('App\WeatherStationUser')->withDefault();
+        return $this->belongsTo('App\Models\WeatherStationUser')->withDefault();
     }
     public function graphType()
     {
-        return $this->belongsTo('App\GraphType')->withDefault();
+        return $this->belongsTo('App\Models\GraphType')->withDefault();
     }
 }
