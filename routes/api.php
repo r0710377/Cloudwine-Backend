@@ -40,7 +40,6 @@ Route::put('weatherstations/{weatherstation}', 'App\Http\Controllers\Weatherstat
 
 // WEATHERSTATION USER
 Route::get('stationusers', 'App\Http\Controllers\WeatherStationUserController@index');
-Route::get('stationusers/{weatherStationUser}', 'App\Http\Controllers\WeatherStationUserController@show');
-Route::post('stationusers', 'App\Http\Controllers\WeatherStationUserController@store');
-Route::put('stationusers/{weatherStationUser}', 'App\Http\Controllers\WeatherStationUserController@update');
+Route::get('stationusers/{user_id}/{weather_station_id}', 'App\Http\Controllers\WeatherStationUserController@show');
+Route::put('stationusers/{user_id}/{weather_station_id}', 'App\Http\Controllers\WeatherStationUserController@update');
 
