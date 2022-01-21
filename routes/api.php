@@ -14,7 +14,6 @@ Route::get('organisations', 'App\Http\Controllers\OrganisationController@index')
 Route::get('organisations/{organisation}', 'App\Http\Controllers\OrganisationController@show');
 Route::post('organisations', 'App\Http\Controllers\OrganisationController@store');
 Route::put('organisations/{organisation}', 'App\Http\Controllers\OrganisationController@update');
-//Route::delete('organisations/{organisation}', 'OrganizationController@delete');
 
 // USER
 Route::get('users', 'App\Http\Controllers\UserController@index');
