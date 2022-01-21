@@ -11,7 +11,10 @@ class Mail extends Model
     protected $fillable = [
         'message',
         'subject',
-        'recipient'
+    ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 
     use HasFactory;

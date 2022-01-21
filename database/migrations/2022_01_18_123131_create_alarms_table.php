@@ -16,16 +16,16 @@ class CreateAlarmsTable extends Migration
         Schema::create('alarms', function (Blueprint $table) {
             $table->id();
             $table->foreignId('weather_station_id');
-            $table->string('name');
-            $table->boolean('is_active')->default(false);
-            $table->integer('min')->nullable();
-            $table->integer('max')->nullable();
+            $table->foreignId('graph_type_id');
+            $table->float('switch_value');
+            $table->string('operator');
             $table->boolean('is_relais')->default(false);
             $table->boolean('is_notification')->default(false);
             $table->timestamps();
 
             // Foreign key relation
             $table->foreign('weather_station_id')->references('id')->on('weather_stations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('graph_type_id')->references('id')->on('graph_types')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

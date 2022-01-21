@@ -19,7 +19,7 @@ class ValueTableSeeder extends Seeder
 
 
         //ADD DATA WHEATERSTATION 1
-        for ($i = 0; $i < 4; $i++) {
+        for ($a = 0; $a < 4; $a++) {
             for ($i = 1; $i < 23; $i++) {
                 Value::create([
                     'weather_station_id' => 1,
@@ -31,7 +31,7 @@ class ValueTableSeeder extends Seeder
         }
 
         //ADD DATA WHEATERSTATION 2
-        for ($i = 0; $i < 4; $i++) {
+        for ($a = 0; $a < 4; $a++) {
             for ($i = 1; $i < 23; $i++) {
                 Value::create([
                     'weather_station_id' => 2,
@@ -43,7 +43,7 @@ class ValueTableSeeder extends Seeder
         }
 
         //ADD DATA WHEATERSTATION 3
-        for ($i = 0; $i < 4; $i++) {
+        for ($a = 0; $a < 4; $a++) {
             for ($i = 1; $i < 23; $i++) {
                 Value::create([
                     'weather_station_id' => 3,
@@ -55,7 +55,7 @@ class ValueTableSeeder extends Seeder
         }
 
         //ADD DATA WHEATERSTATION 4
-        for ($i = 0; $i < 4; $i++) {
+        for ($a = 0; $a < 4; $a++) {
             for ($i = 1; $i < 23; $i++) {
                 Value::create([
                     'weather_station_id' => 4,

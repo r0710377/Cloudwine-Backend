@@ -22,6 +22,11 @@ class WeatherStation extends Model
         'number_of_cycles'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function alarms()
     {
         return $this->hasMany('App\Models\Alarm');

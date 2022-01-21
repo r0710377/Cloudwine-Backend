@@ -17,11 +17,17 @@ class WeatherStationUserTableSeeder extends Seeder
         //This resets the table, deleting all the data everytime the function is called.
 //        WeatherStationUser::truncate();
 
+//        $faker = \Faker\Factory::create();
+
+
         //ORGANISATIE 1 WEERSTATION 1
         for ($i = 2; $i < 6; $i++) {
             WeatherStationUser::create([
                 'weather_station_id' => 1,
-                'user_id' => $i
+                'user_id' => $i,
+                'timeframe_temp' => null,
+                'timerframe_hum' => null,
+                'timeframe_lux' => null
             ]);
         }
 
@@ -29,7 +35,10 @@ class WeatherStationUserTableSeeder extends Seeder
         for ($i = 2; $i < 6; $i++) {
             WeatherStationUser::create([
                 'weather_station_id' => 2,
-                'user_id' => $i
+                'user_id' => $i,
+                'timeframe_temp' => null,
+                'timerframe_hum' => null,
+                'timeframe_lux' => null
             ]);
         }
 
@@ -37,7 +46,10 @@ class WeatherStationUserTableSeeder extends Seeder
         for ($i = 6; $i < 10; $i++) {
             WeatherStationUser::create([
                 'weather_station_id' => 3,
-                'user_id' => $i
+                'user_id' => $i,
+                'timeframe_temp' => null,
+                'timerframe_hum' => null,
+                'timeframe_lux' => null
             ]);
         }
 
@@ -45,7 +57,10 @@ class WeatherStationUserTableSeeder extends Seeder
         for ($i = 9; $i < 18; $i++) {
             WeatherStationUser::create([
                 'weather_station_id' => 4,
-                'user_id' => $i
+                'user_id' => $i,
+                'timeframe_temp' => null,
+                'timerframe_hum' => null,
+                'timeframe_lux' => null
             ]);
         }
 

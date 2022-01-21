@@ -9,7 +9,13 @@ class GraphType extends Model
 {
     /*** The attributes that are mass assignable.*/
     protected $fillable = [
-        'name'
+        'name',
+        'description'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 
     public function values()
@@ -17,8 +23,13 @@ class GraphType extends Model
         return $this->hasMany('App\Models\Value');
     }
 
-    public function graphs()
+    public function alarms()
     {
-        return $this->hasMany('App\Models\Graph');
+        return $this->hasMany('App\Models\Alarm');
     }
+
+//    public function graphs()
+//    {
+//        return $this->hasMany('App\Graph');
+//    }
 }

@@ -16,6 +16,7 @@ class CreateGraphTypesTable extends Migration
         Schema::create('graph_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description');
             $table->timestamps();
         });
     }

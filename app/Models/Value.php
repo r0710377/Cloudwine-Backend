@@ -15,13 +15,19 @@ class Value extends Model
         'timestamp'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+
     public function weatherStation()
     {
-        return $this->belongsTo('App\WeatherStation')->withDefault();
+        return $this->belongsTo('App\Models\WeatherStation')->withDefault();
     }
 
     public function graphType()
     {
-        return $this->belongsTo('App\GraphType')->withDefault();
+        return $this->belongsTo('App\Models\GraphType')->withDefault();
     }
 }
