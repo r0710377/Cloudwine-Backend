@@ -11,11 +11,14 @@ class WeatherStationUser extends Model
     protected $fillable = [
         'weather_station_id',
         'user_id',
+        'timeframe_temp',
+        'timerframe_hum',
+        'timeframe_lux'
     ];
 
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public function user()
@@ -23,10 +26,10 @@ class WeatherStationUser extends Model
         return $this->belongsTo('App\User')->withDefault();
     }
 
-    public function graphs()
-    {
-        return $this->hasMany('App\Graph');
-    }
+//    public function graphs()
+//    {
+//        return $this->hasMany('App\Graph');
+//    }
 
     public function weatherStation()
     {

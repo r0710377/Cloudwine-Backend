@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AlarmTableSeeder::class);
         $this->call(GraphTypeTableSeeder::class);
         $this->call(ValueTableSeeder::class);
-        $this->call(GraphTableSeeder::class);
+//        $this->call(GraphTableSeeder::class);
     }
 }

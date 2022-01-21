@@ -17,6 +17,9 @@ class CreateWeatherStationUsersTable extends Migration
             $table->id();
             $table->foreignId('weather_station_id');
             $table->foreignId('user_id');
+            $table->string('timeframe_temp')->nullable();
+            $table->string('timerframe_hum')->nullable();
+            $table->string('timeframe_lux')->nullable();
             $table->timestamps();
 
             // Foreign key relation

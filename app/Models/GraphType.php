@@ -22,8 +22,8 @@ class GraphType extends Model
         return $this->hasMany('App\Value');
     }
 
-    public function graphs()
-    {
-        return $this->hasMany('App\Graph');
-    }
+//    public function graphs()
+//    {
+//        return $this->hasMany('App\Graph');
+//    }
 }
