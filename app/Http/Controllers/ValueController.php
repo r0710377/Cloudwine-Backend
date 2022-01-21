@@ -22,4 +22,12 @@ class ValueController extends Controller
         return response()->json($values,200);
 
     }
+
+    public function relais($weather_station_id)
+    {
+
+        $status = Value::where('weather_station_id', $weather_station_id)->with('graphType')->where('graphType.name','SW1')->get();
+
+        return response()->json($status,200); //200 --> OK, The standard success code and default option
+    }
 }

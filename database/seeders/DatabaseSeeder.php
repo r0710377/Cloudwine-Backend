@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(WeatherStationTableSeeder::class);
         $this->call(WeatherStationUserTableSeeder::class);
-        $this->call(AlarmTableSeeder::class);
         $this->call(GraphTypeTableSeeder::class);
+        $this->call(AlarmTableSeeder::class);
         $this->call(ValueTableSeeder::class);
         $this->call(mailTableSeeder::class);
         $this->call(otaTableSeeder::class);

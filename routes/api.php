@@ -24,11 +24,13 @@ Route::delete('users/{user}', 'App\Http\Controllers\UserController@delete');
 
 // VALUE
 Route::get('values/{weather_station_id}', 'App\Http\Controllers\ValueController@index');
-Route::get('values/{value}', 'App\Http\Controllers\ValueController@show');
+Route::get('values/relais/{weather_station_id}', 'App\Http\Controllers\ValueController@relais');
 
 // ALARM
 Route::get('alarms/{weather_station_id}', 'App\Http\Controllers\AlarmController@index');
+Route::post('alarms', 'App\Http\Controllers\AlarmController@store');
 Route::put('alarms/{alarm}', 'App\Http\Controllers\AlarmController@update');
+Route::delete('alarms/{alarm}', 'App\Http\Controllers\AlarmController@delete');
 
 // WEATHERSTATION
 Route::get('weatherstations', 'App\Http\Controllers\WeatherstationController@index');
@@ -53,5 +55,8 @@ Route::get('mails/{mail}', 'App\Http\Controllers\MailController@show');
 Route::post('mails', 'App\Http\Controllers\MailController@store');
 Route::put('mails/{mail}', 'App\Http\Controllers\MailController@update');
 Route::delete('mails/{mail}', 'App\Http\Controllers\MailController@delete');
+
+// GRAPHTYPE
+Route::get('types', 'App\Http\Controllers\GraphTypeController@index');
 
 

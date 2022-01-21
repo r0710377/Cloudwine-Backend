@@ -10,10 +10,9 @@ class Alarm extends Model
     /*** The attributes that are mass assignable.*/
     protected $fillable = [
         'weather_station_id',
-        'name',
-        'is_active',
-        'min',
-        'max',
+        'graph_type_id',
+        'switch_value',
+        'operator',
         'is_relais',
         'is_notification',
     ];
@@ -25,7 +24,12 @@ class Alarm extends Model
 
     public function weatherStation()
     {
-        return $this->belongsTo('App\WheaterStation')->withDefault();
+        return $this->belongsTo('App\Models\WheaterStation')->withDefault();
+    }
+
+    public function graphType()
+    {
+        return $this->belongsTo('App\Models\GraphType')->withDefault();
     }
 
 }
