@@ -27,4 +27,5 @@
 //    {
 //        return $this->belongsTo('App\GraphType')->withDefault();
 //    }
-//}
+//
+

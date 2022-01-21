@@ -36,12 +36,12 @@ class User extends Authenticatable
 
     public function organisation()
     {
-        return $this->belongsTo('App\Organisation')->withDefault();   // a user belongs to an organization
+        return $this->belongsTo('App\Models\Organisation')->withDefault();   // a user belongs to an organization
     }
 
     public function weatherStationUsers()
     {
-        return $this->hasMany('App\WeatherStationUser');
+        return $this->hasMany('App\Models\WeatherStationUser');
     }
 
 //    /*** The attributes that should be cast.*/
