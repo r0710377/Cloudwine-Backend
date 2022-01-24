@@ -17,6 +17,7 @@ class CreateValuesTable extends Migration
             $table->id();
             $table->foreignId('weather_station_id');
             $table->foreignId('graph_type_id');
+//            $table->float('value')->nullable();
             $table->string('value')->nullable();
             $table->string('timestamp');
             $table->timestamps();

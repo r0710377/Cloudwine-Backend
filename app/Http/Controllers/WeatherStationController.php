@@ -10,15 +10,15 @@ class WeatherStationController extends Controller
     public function index()
     {
         if (request()->active){
-            $weatherstation = WeatherStation::where('is_active', request()->active)->with('alarms')->get();
+            $weatherstation = WeatherStation::where('is_active', request()->active)->with(['alarms','organisation'])->get();
             return response()->json($weatherstation,200);
         }
 
         if (request()->organisation){
-            $weatherstation = WeatherStation::where('organisation_id', request()->organisation)->with('alarms')->get();
+            $weatherstation = WeatherStation::where('organisation_id', request()->organisation)->with(['alarms','organisation'])->get();
             return response()->json($weatherstation,200);
         }
-        return WeatherStation::with('alarms')->get();
+        return WeatherStation::with(['alarms','organisation'])->get();
     }
 
     public function show(WeatherStation $weatherStation)

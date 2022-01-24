@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GraphType;
 use App\Models\Value;
 use App\Models\WeatherStation;
 use Illuminate\Http\Request;
@@ -41,5 +42,43 @@ class ValueController extends Controller
         })->latest()->first();;
 
         return response()->json($status,200); //200 --> OK, The standard success code and default option
+    }
+
+    public function store(Request $request)
+    {
+        $graphTypes = GraphType::all();
+        $weatherStation = WeatherStation::where('gsm',$request->gsm)->get();
+
+        foreach ($request as $key => $value) {
+            $test = $key;
+        }
+
+        foreach ($graphTypes as $type) {
+            $name = $type->name;
+            $value = Value::create([
+                    'weather_station_id' => $weatherStation[0]->id,
+                    'graph_type_id' => $type->id,
+                    'value' => $request->$name,
+                    'timestamp' => $request->time,
+                ]);
+        }
+
+//        foreach($data as $key => $value)
+//        {
+//           foreach ($graphTypes as $type){
+//               if($type->name == $key) {
+////                   $value = Value::create([
+////                    'weather_station_id' => $weatherStation->id,
+////                    'graph_type_id' => $type->id,
+////                    'value' => $value,
+////                    'timestamp' => $request->time,
+////                ]);
+//                   $test = '{"1":"a","2":"b","3":"c","4":"d","5":"e"}';
+//
+//               }
+//           }
+//        }
+        return response()->json($value, 201); //201 --> Object created. Usefull for the store actions
+
     }
 }

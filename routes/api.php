@@ -26,6 +26,7 @@ Route::delete('users/{user}', 'App\Http\Controllers\UserController@delete');
 Route::get('values/{weather_station_id}', 'App\Http\Controllers\ValueController@index');
 Route::get('values/relais/{weather_station_id}', 'App\Http\Controllers\ValueController@relais');
 Route::get('values/battery/{weather_station_id}', 'App\Http\Controllers\ValueController@battery');
+Route::post('values', 'App\Http\Controllers\ValueController@store');
 
 // ALARM
 Route::get('alarms/{weather_station_id}', 'App\Http\Controllers\AlarmController@index');
@@ -36,10 +37,10 @@ Route::get('alarms/gsm/{weather_station_gsm}', 'App\Http\Controllers\AlarmContro
 
 
 // WEATHERSTATION
-Route::get('weatherstations', 'App\Http\Controllers\WeatherstationController@index');
-Route::get('weatherstations/{weatherstation}', 'App\Http\Controllers\WeatherstationController@show');
-Route::post('weatherstations', 'App\Http\Controllers\WeatherstationController@store');
-Route::put('weatherstations/{weatherstation}', 'App\Http\Controllers\WeatherstationController@update');
+Route::get('weatherstations', 'App\Http\Controllers\WeatherStationController@index');
+Route::get('weatherstations/{weatherStation}', 'App\Http\Controllers\WeatherStationController@show');
+Route::post('weatherstations', 'App\Http\Controllers\WeatherStationController@store');
+Route::put('weatherstations/{weatherStation}', 'App\Http\Controllers\WeatherStationController@update');
 
 
 // WEATHERSTATION USER

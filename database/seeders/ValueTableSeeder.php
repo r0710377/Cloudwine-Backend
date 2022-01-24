@@ -24,7 +24,7 @@ class ValueTableSeeder extends Seeder
                 Value::create([
                     'weather_station_id' => 1,
                     'graph_type_id' => $i,
-                    'value' => strval( $faker->randomDigit),
+                    'value' => strval($faker->randomDigit),
                     'timestamp' => '2022-01-19T15:02:15',
                 ]);
             }
@@ -36,7 +36,7 @@ class ValueTableSeeder extends Seeder
                 Value::create([
                     'weather_station_id' => 2,
                     'graph_type_id' => $i,
-                    'value' => strval( $faker->randomDigit),
+                    'value' => strval($faker->randomDigit),
                     'timestamp' => '2022-01-19T17:02:15',
                 ]);
             }
@@ -48,7 +48,7 @@ class ValueTableSeeder extends Seeder
                 Value::create([
                     'weather_station_id' => 3,
                     'graph_type_id' => $i,
-                    'value' => strval( $faker->randomDigit),
+                    'value' => strval($faker->randomDigit),
                     'timestamp' => '2022-01-19T09:02:15',
                 ]);
             }
@@ -60,7 +60,7 @@ class ValueTableSeeder extends Seeder
                 Value::create([
                     'weather_station_id' => 4,
                     'graph_type_id' => $i,
-                    'value' => strval( $faker->randomDigit),
+                    'value' => strval($faker->randomDigit),
                     'timestamp' => '2022-01-19T105:02:15',
                 ]);
             }
