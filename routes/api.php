@@ -25,6 +25,8 @@ Route::delete('users/{user}', 'App\Http\Controllers\UserController@delete');
 // VALUE
 Route::get('values/{weather_station_id}', 'App\Http\Controllers\ValueController@index');
 Route::get('values/relais/{weather_station_id}', 'App\Http\Controllers\ValueController@relais');
+Route::get('values/battery/{weather_station_id}', 'App\Http\Controllers\ValueController@battery');
+Route::get('values/gsm/{weather_station_gsm}', 'App\Http\Controllers\ValueController@gsm');
 
 // ALARM
 Route::get('alarms/{weather_station_id}', 'App\Http\Controllers\AlarmController@index');
