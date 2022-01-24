@@ -23,13 +23,6 @@ class ValueController extends Controller
 
     }
 
-    public function gsm(Request $request, $weather_station_gsm)
-    {
-        $values = Value::where('weather_station_id', $weather_station_gsm)->with('graphType')->get();
-
-        return response()->json($values,200);
-
-    }
 
     public function relais($weather_station_id)
     {

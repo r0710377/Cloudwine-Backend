@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alarm;
+use App\Models\WeatherStation;
 use Illuminate\Http\Request;
 
 class AlarmController extends Controller
@@ -50,5 +51,14 @@ class AlarmController extends Controller
     {
         $alarm->delete();
         return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return
+    }
+
+    public function gsm($weather_station_gsm)
+    {
+        $weatherstation = WeatherStation::where('gsm',$weather_station_gsm);
+        $weather_station_id = json_decode($weatherstation->get('id'), true);
+        $alarms = Alarm::where('weather_station_id',$weather_station_id)->with(['graphType'])->get();
+        return response()->json($alarms,200);
+
     }
 }
