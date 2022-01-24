@@ -23,10 +23,29 @@ class ValueController extends Controller
 
     }
 
+    public function gsm(Request $request, $weather_station_gsm)
+    {
+        $values = Value::where('weather_station_id', $weather_station_gsm)->with('graphType')->get();
+
+        return response()->json($values,200);
+
+    }
+
     public function relais($weather_station_id)
     {
 
-        $status = Value::where('weather_station_id', $weather_station_id)->with('graphType')->where('graphType.name','SW1')->get();
+        $status = Value::where('weather_station_id', $weather_station_id)->whereHas('graphType',function($query){
+            $query->where('name','SW1');
+        })->latest()->first();;
+
+        return response()->json($status,200); //200 --> OK, The standard success code and default option
+    }
+
+    public function battery($weather_station_id)
+    {
+        $status = Value::where('weather_station_id', $weather_station_id)->whereHas('graphType',function($query){
+            $query->where('name','BAP');
+        })->latest()->first();;
 
         return response()->json($status,200); //200 --> OK, The standard success code and default option
     }
