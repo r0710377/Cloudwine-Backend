@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_superadmin')->default(false);
             $table->boolean('can_message')->default(false);
             $table->boolean('can_receive_notification')->default(false);
+//            $table->string('api_token')->unique();
             $table->rememberToken();
             $table->timestamps();
 

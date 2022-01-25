@@ -53,6 +53,7 @@ Route::put('stationusers/{user_id}/{weather_station_id}', 'App\Http\Controllers\
 // OTA UPDATE
 Route::get('updates', 'App\Http\Controllers\OTAController@index');
 Route::post('updates', 'App\Http\Controllers\OTAController@store');
+Route::put('updates/{update}', 'App\Http\Controllers\OTAController@update');
 Route::delete('updates/{update}', 'App\Http\Controllers\OTAController@delete');
 
 // MAIL
