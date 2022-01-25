@@ -63,4 +63,11 @@ Route::delete('mails/{mail}', 'App\Http\Controllers\MailController@delete');
 // GRAPHTYPE
 Route::get('types', 'App\Http\Controllers\GraphTypeController@index');
 
+// WEATHER STATION UPDATE
+Route::get('stationupdates', 'App\Http\Controllers\WeatherStationUpdateController@index');
+Route::post('stationupdates', 'App\Http\Controllers\WeatherStationUpdateController@store');
+Route::delete('stationupdates/{stationUpdate}', 'App\Http\Controllers\WeatherStationUpdateController@delete');
+
+
+
 
