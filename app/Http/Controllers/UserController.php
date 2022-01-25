@@ -25,9 +25,7 @@ class UserController extends Controller
                 $users = User::where('organisation_id', $organisation)->where('is_active',1)->get();
             }
             return response()->json($users,200);
-        }
-
-        if($order){
+        }else if($order){
             if($status == 2){
                 $users = User::orderBy('first_name', $order)->get();
             } else if($status == '0'){
@@ -35,6 +33,14 @@ class UserController extends Controller
             } else {
                 $users = User::orderBy('first_name', $order)->where('is_active',1)->get();
             }
+            return response()->json($users,200);
+        } else if($status){
+            if($status == 2){
+                $users = User::orderBy('organisation_id','asc')->get();
+            } else if($status == '0'){
+                $users = User::orderBy('organisation_id','asc')->where('is_active',0)->get();
+            } else {
+                $users = User::orderBy('organisation_id','asc')->where('is_active',1)->get();            }
             return response()->json($users,200);
         }
 
@@ -90,9 +96,9 @@ class UserController extends Controller
         return response()->json($user,200); //200 --> OK, The standard success code and default option
     }
 
-    public function delete(User $user)
-    {
-        $user->delete();
-        return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return
-    }
+//    public function delete(User $user)
+//    {
+//        $user->delete();
+//        return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return
+//    }
 }
