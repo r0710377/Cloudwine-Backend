@@ -35,7 +35,7 @@ class WeatherStationTableSeeder extends Seeder
         WeatherStation::create([
             'name' => 'Weerstation Zuid',
             'organisation_id' => 1,
-            'gsm' => '0470885532',
+            'gsm' => '0456186362',
             'relais_name' => 'Automatische overdekking',
             'latitude' => '31.54',
             'longitude' => '-7.0235 ',

@@ -38,6 +38,7 @@ Route::get('alarms/gsm/{weather_station_gsm}', 'App\Http\Controllers\AlarmContro
 
 
 // WEATHERSTATION
+Route::get('weatherstations/public', 'App\Http\Controllers\WeatherStationController@public');
 Route::get('weatherstations', 'App\Http\Controllers\WeatherStationController@index');
 Route::get('weatherstations/{weatherStation}', 'App\Http\Controllers\WeatherStationController@show');
 Route::post('weatherstations', 'App\Http\Controllers\WeatherStationController@store');

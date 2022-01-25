@@ -72,9 +72,7 @@ class ValueController extends Controller
                 ]);
         }
 
-        $values = Value::all();
-
-        return response()->json($values,201); //201 --> Object created. Usefull for the store actions
+        return response()->json(201); //201 --> Object created. Usefull for the store actions
 
     }
 }
