@@ -30,7 +30,8 @@ Route::get('values/location/{weather_station_id}', 'App\Http\Controllers\ValueCo
 Route::post('values', 'App\Http\Controllers\ValueController@store');
 
 // ALARM
-Route::get('alarms/{weather_station_id}', 'App\Http\Controllers\AlarmController@index');
+Route::get('alarms/station/{weather_station_id}', 'App\Http\Controllers\AlarmController@index');
+Route::get('alarms/{alarm_id}', 'App\Http\Controllers\AlarmController@show');
 Route::post('alarms', 'App\Http\Controllers\AlarmController@store');
 Route::put('alarms/{alarm}', 'App\Http\Controllers\AlarmController@update');
 Route::delete('alarms/{alarm}', 'App\Http\Controllers\AlarmController@delete');
