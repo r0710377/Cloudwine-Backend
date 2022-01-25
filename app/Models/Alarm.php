@@ -24,7 +24,7 @@ class Alarm extends Model
 
     public function weatherStation()
     {
-        return $this->belongsTo('App\Models\WheaterStation')->withDefault();
+        return $this->belongsTo('App\Models\WeatherStation')->withDefault();
     }
 
     public function graphType()
