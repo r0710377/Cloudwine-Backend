@@ -19,6 +19,12 @@ class OTAController extends Controller
         return response()->json($update, 201); //201 --> Object created. Usefull for the store actions
     }
 
+    public function update(Request $request, OTA_Update $update)
+    {
+        $update->update($request->all());
+        return response()->json($update,200); //200 --> OK, The standard success code and default option
+    }
+
     public function delete(OTA_Update $update)
     {
         $update->delete();
