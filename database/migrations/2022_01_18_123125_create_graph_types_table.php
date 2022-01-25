@@ -17,6 +17,7 @@ class CreateGraphTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->boolean('is_filter')->default(false);
             $table->timestamps();
         });
     }

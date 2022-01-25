@@ -10,7 +10,8 @@ class GraphType extends Model
     /*** The attributes that are mass assignable.*/
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'is_filter'
     ];
 
     protected $hidden = [

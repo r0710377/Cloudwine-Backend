@@ -16,6 +16,7 @@ class GraphTypeTableSeeder extends Seeder
     {
 
         $types = ['gsm','time','RH','T1','T2','T3','RF','IRL','FLL','VIL','LUX','LW1','LW2','BAV','BAP','WD','WS','GLA','GLO','SWS','SWT','SWL','SWN'];
+        $filter = [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0];
         $descriptions = ['String van Device Name',
             'Huidig tijd',
             'Vochtigheid (humidity)',
@@ -48,7 +49,8 @@ class GraphTypeTableSeeder extends Seeder
         for ($i = 0; $i < count($types); $i++) {
             GraphType::create([
                 'name' => $types[$i],
-                'description'=> $descriptions[$i]
+                'description'=> $descriptions[$i],
+                'is_filter'=> $filter[$i]
             ]);
         }
     }
