@@ -7,23 +7,29 @@ use App\Models\WeatherStation;
 
 class WeatherStationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->active){
-            $weatherstation = WeatherStation::where('is_active', request()->active)->with(['alarms','organisation'])->get();
-            return response()->json($weatherstation,200);
+        $organisation = $request->get('organisation');
+        $status = $request->get('active');
+
+        if($organisation){
+            if($status == 2){
+                $weatherstations = WeatherStation::where('organisation_id', $organisation)->get();
+            } else if($status == '0'){
+                $weatherstations = WeatherStation::where('organisation_id', $organisation)->where('is_active',0)->get();
+            } else {
+                $weatherstations = WeatherStation::where('organisation_id', $organisation)->where('is_active',1)->get();
+            }
+            return response()->json($weatherstations,200);
         }
 
-        if (request()->organisation){
-            $weatherstation = WeatherStation::where('organisation_id', request()->organisation)->with(['alarms','organisation'])->get();
-            return response()->json($weatherstation,200);
-        }
         return WeatherStation::with(['alarms','organisation'])->get();
     }
 
+
     public function public()
     {
-        $weatherstation = WeatherStation::where('is_public', true)->with(['organisation' => function($query){
+        $weatherstation = WeatherStation::where('is_public', true)->where('is_active',1)->with(['organisation' => function($query){
             $query->select(['id','name']);
         }])->get();
 
