@@ -44,6 +44,19 @@ class ValueController extends Controller
         return response()->json($status,200); //200 --> OK, The standard success code and default option
     }
 
+    public function location($weather_station_id)
+    {
+        $longitude = Value::where('weather_station_id', $weather_station_id)->whereHas('graphType',function($query){
+            $query->where('name','GLO');
+        })->with('graphType')->latest()->first();
+
+        $latitude = Value::where('weather_station_id', $weather_station_id)->whereHas('graphType',function($query){
+            $query->where('name','GLA');
+        })->with('graphType')->latest()->first();;
+
+        return response()->json([$longitude,$latitude],200); //200 --> OK, The standard success code and default option
+    }
+
     public function store(Request $request)
     {
         $graphTypes = GraphType::all();
