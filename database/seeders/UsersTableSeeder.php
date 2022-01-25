@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'organisation_id' => null,
             'first_name' => 'SuperAdmin',
-            'surname' => '',
+            'surname' => '420',
             'email' => 'superdmin@test.com',
             'gsm' => '0470541285',
             'password' => $password,
@@ -37,6 +37,7 @@ class UsersTableSeeder extends Seeder
             'is_admin' => false,
             'is_superadmin' => true,
             'can_message' => true,
+            'can_receive_notification' => true,
         ]);
 
         //ADMIN ORGANISATIE 1
@@ -51,6 +52,7 @@ class UsersTableSeeder extends Seeder
             'is_admin' => true,
             'is_superadmin' => false,
             'can_message' => true,
+            'can_receive_notification' => false,
         ]);
 
         // ORGANISATIE 1
@@ -66,7 +68,9 @@ class UsersTableSeeder extends Seeder
                 'is_active' => true,
                 'is_admin' => false,
                 'is_superadmin' => false,
-                'can_message' => false
+                'can_message' => false,
+                'can_receive_notification' => true,
+
             ]);
         }
 
@@ -82,6 +86,8 @@ class UsersTableSeeder extends Seeder
             'is_admin' => true,
             'is_superadmin' => false,
             'can_message' => true,
+            'can_receive_notification' => false,
+
         ]);
 
         //ORGANISATIE 2
@@ -96,7 +102,9 @@ class UsersTableSeeder extends Seeder
                 'is_active' => true,
                 'is_admin' => false,
                 'is_superadmin' => false,
-                'can_message' => false
+                'can_message' => false,
+                'can_receive_notification' => false,
+
             ]);
         }
 
@@ -112,6 +120,8 @@ class UsersTableSeeder extends Seeder
             'is_admin' => true,
             'is_superadmin' => false,
             'can_message' => true,
+            'can_receive_notification' => true,
+
         ]);
 
         //ORGANISATIE 3
@@ -126,7 +136,8 @@ class UsersTableSeeder extends Seeder
                 'is_active' => true,
                 'is_admin' => false,
                 'is_superadmin' => false,
-                'can_message' => false
+                'can_message' => false,
+                'can_receive_notification' => false,
             ]);
         }
     }

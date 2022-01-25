@@ -49,19 +49,23 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+//        $password= Hash::make('test1');
         //create the user
-        $user = User::create([
-            'organisation_id' => $request->organisation_id,
-            'first_name' => $request->first_name,
-            'surname' => $request->surname,
-            'email' => $request->email,
-            'gsm' => $request->gsm,
-            'password' => Hash::make($request->password),
-            'is_active' => $request->is_active,
-            'is_admin' => $request->is_admin,
-            'is_superadmin' => $request->is_superadmin,
-            'can_message' => $request->can_message,
-        ]);
+//        $user = User::create([
+//            'organisation_id' => $request->organisation_id,
+//            'first_name' => $request->first_name,
+//            'surname' => $request->surname,
+//            'email' => $request->email,
+//            'gsm' => $request->gsm,
+//            'password' => $password,
+//            'is_active' => $request->is_active,
+//            'is_admin' => $request->is_admin,
+//            'is_superadmin' => $request->is_superadmin,
+//            'can_message' => $request->can_message,
+//            'can_receive_notification' => $request->can_receive_notification,
+//        ]);
+
+        $user = User::create($request->all());
 
         //create stationusers when user is added
         if($request->organisation_id !== null){

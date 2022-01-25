@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();     // shorthand for $table->bigIncrements('id');
             $table->foreignId('organisation_id')->nullable();
             $table->string('first_name');
-            $table->string('surname')->nullable();
+            $table->string('surname');
             $table->string('email')->unique();
             $table->string('gsm')->unique()->nullable();
             $table->string('password');
@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_superadmin')->default(false);
             $table->boolean('can_message')->default(false);
+            $table->boolean('can_receive_notification')->default(false);
             $table->rememberToken();
             $table->timestamps();
 

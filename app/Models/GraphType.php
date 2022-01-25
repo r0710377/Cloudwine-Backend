@@ -23,9 +23,9 @@ class GraphType extends Model
         return $this->hasMany('App\Models\Value');
     }
 
-    public function alarms()
+    public function weather_station_updates()
     {
-        return $this->hasMany('App\Models\Alarm');
+        return $this->hasMany('App\Models\WeatherStationUpdate');
     }
 
 //    public function graphs()
