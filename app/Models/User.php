@@ -24,6 +24,7 @@ class User extends Authenticatable
         'is_admin',
         'is_superadmin',
         'can_message',
+        'can_receive_notification'
     ];
 
     /*** The attributes that should be hidden for serialization.*/

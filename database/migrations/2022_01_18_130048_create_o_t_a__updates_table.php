@@ -15,9 +15,9 @@ class CreateOTAUpdatesTable extends Migration
     {
         Schema::create('o_t_a__updates', function (Blueprint $table) {
             $table->id();
-            $table->string('send_on');
             $table->string('bin_file_path');
             $table->string('name')->nullable();
+            $table->string('deploy_on')->nullable();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\WeatherStationUpdate;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ValueTableSeeder::class);
         $this->call(mailTableSeeder::class);
         $this->call(otaTableSeeder::class);
-//        $this->call(GraphTableSeeder::class);
+        $this->call(WeatherStationUpdateTableSeeder::class);
     }
 }

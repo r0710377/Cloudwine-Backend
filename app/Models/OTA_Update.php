@@ -9,14 +9,17 @@ class OTA_Update extends Model
 {
     /*** The attributes that are mass assignable.*/
     protected $fillable = [
-        'send_on',
         'bin_file_path',
-        'name'
+        'name',
+        'deploy_on'
     ];
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
 
-    use HasFactory;
+    public function values()
+    {
+        return $this->hasMany('App\Models\Value');
+    }
 }

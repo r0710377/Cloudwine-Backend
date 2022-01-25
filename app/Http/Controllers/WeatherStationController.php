@@ -21,6 +21,15 @@ class WeatherStationController extends Controller
         return WeatherStation::with(['alarms','organisation'])->get();
     }
 
+    public function public()
+    {
+        $weatherstation = WeatherStation::where('is_public', true)->with(['organisation' => function($query){
+            $query->select(['id','name']);
+        }])->get();
+
+        return response()->json($weatherstation->makeHidden(['gsm','relais_name','latitude','longitude','is_active','is_public','is_location_alarm','number_of_cycles','is_no_data_alarm']), 201); //201 --> Object created. Usefull for the store actions
+    }
+
     public function show(WeatherStation $weatherStation)
     {
         return $weatherStation;

@@ -42,6 +42,10 @@ class WeatherStation extends Model
         return $this->hasMany('App\Models\WeatherStationUser');
     }
 
+    public function weather_station_updates()
+    {
+        return $this->hasMany('App\Models\WeatherStationUpdate');
+    }
 
     public function organisation()
     {

@@ -15,15 +15,15 @@ class otaTableSeeder extends Seeder
     public function run()
     {
         OTA_Update::create([
-            'send_on' => '1968-11-16T00:00:00',
             'bin_file_path' => 'c:/xx/xx',
             'name' => 'Test Update',
+            'deploy_on' => '22-1-24 8:54:12',
         ]);
 
         OTA_Update::create([
-            'send_on' => '2022-01-23T00:00:00',
             'bin_file_path' => 'c:/xx/xx',
             'name' => 'Update 1.2',
+            'deploy_on' => '22-1-28 8:54:12',
         ]);
     }
 }
