@@ -34,13 +34,15 @@ class AlarmController extends Controller
         return response()->json($alarms,200);
     }
 
-    public function show( $alarm_id)
+    public function show($alarm_id)
     {
-        $alarm = Alarm::find($alarm_id)->with(['weatherStation' => function($query){
+        $alarm = Alarm::where('id',$alarm_id)->with(['weatherStation' => function($query){
             $query->select(['id','relais_name']);
+        },'graphtype' => function($query1){
+            $query1->select(['id','name']);
         }])->get();
 
-        return response()->json($alarm,200);
+        return response()->json($alarm[0],200);
     }
 
     public function store(Request $request)

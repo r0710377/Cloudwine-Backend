@@ -20,7 +20,8 @@ Route::get('users', 'App\Http\Controllers\UserController@index');
 Route::get('users/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('users', 'App\Http\Controllers\UserController@store');
 Route::put('users/{user}', 'App\Http\Controllers\UserController@update');
-Route::delete('users/{user}', 'App\Http\Controllers\UserController@delete');
+
+//Route::delete('users/{user}', 'App\Http\Controllers\UserController@delete');
 
 // VALUE
 Route::get('values/{weather_station_id}', 'App\Http\Controllers\ValueController@index');
@@ -32,10 +33,10 @@ Route::post('values', 'App\Http\Controllers\ValueController@store');
 // ALARM
 Route::get('alarms/station/{weather_station_id}', 'App\Http\Controllers\AlarmController@index');
 Route::get('alarms/{alarm_id}', 'App\Http\Controllers\AlarmController@show');
+Route::get('alarms/gsm/{weather_station_gsm}', 'App\Http\Controllers\AlarmController@gsm');
 Route::post('alarms', 'App\Http\Controllers\AlarmController@store');
 Route::put('alarms/{alarm}', 'App\Http\Controllers\AlarmController@update');
 Route::delete('alarms/{alarm}', 'App\Http\Controllers\AlarmController@delete');
-Route::get('alarms/gsm/{weather_station_gsm}', 'App\Http\Controllers\AlarmController@gsm');
 
 
 // WEATHERSTATION
