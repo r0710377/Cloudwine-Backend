@@ -14,6 +14,18 @@ class WeatherStationUpdateController extends Controller
 
     }
 
+    public function specificUpdate($update_id)
+    {
+        $stations = WeatherStationUpdate::where('ota_update_id',$update_id)->with('weatherStation')->get();
+        return response()->json($stations);
+    }
+
+    public function specificStation($station_id)
+    {
+        $updates = WeatherStationUpdate::where('weather_station_id',$station_id)->with('otaUpdate')->get();
+        return response()->json($updates);
+    }
+
     public function store(Request $request)
     {
         $stationUpdate = WeatherStationUpdate::create($request->all());
