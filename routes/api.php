@@ -69,6 +69,8 @@ Route::get('types', 'App\Http\Controllers\GraphTypeController@index');
 
 // WEATHER STATION UPDATE
 Route::get('stationupdates', 'App\Http\Controllers\WeatherStationUpdateController@index');
+Route::get('stationupdates/update/{update_id}', 'App\Http\Controllers\WeatherStationUpdateController@specificUpdate');
+Route::get('stationupdates/station/{station_id}', 'App\Http\Controllers\WeatherStationUpdateController@specificStation');
 Route::post('stationupdates', 'App\Http\Controllers\WeatherStationUpdateController@store');
 Route::delete('stationupdates/{stationUpdate}', 'App\Http\Controllers\WeatherStationUpdateController@delete');
 
