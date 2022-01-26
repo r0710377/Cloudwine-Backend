@@ -23,14 +23,23 @@ Route::group([
 });
 
 
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('organisations', 'App\Http\Controllers\OrganisationController@index');
+});
+
+Route::middleware(['auth', 'superadmin'])->prefix('super')->group(function () {
+    Route::get('users', 'App\Http\Controllers\UserController@index');
+});
+
+
 // ORGANISATION
-Route::get('organisations', 'App\Http\Controllers\OrganisationController@index');
+//Route::get('organisations', 'App\Http\Controllers\OrganisationController@index');
 Route::get('organisations/{organisation}', 'App\Http\Controllers\OrganisationController@show');
 Route::post('organisations', 'App\Http\Controllers\OrganisationController@store');
 Route::put('organisations/{organisation}', 'App\Http\Controllers\OrganisationController@update');
 
 // USER
-Route::get('users', 'App\Http\Controllers\UserController@index');
+//Route::get('users', 'App\Http\Controllers\UserController@index');
 Route::get('users/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('users', 'App\Http\Controllers\UserController@store');
 Route::put('users/{user}', 'App\Http\Controllers\UserController@update');
