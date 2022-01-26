@@ -18,33 +18,33 @@ class UserController extends Controller
 
         if($organisation){
             if($status == 2){
-                $users = User::where('organisation_id', $organisation)->get();
+                $users = User::where('organisation_id', $organisation)->with('organisation')->get();
             } else if($status == '0'){
-                $users = User::where('organisation_id', $organisation)->where('is_active',0)->get();
+                $users = User::where('organisation_id', $organisation)->where('is_active',0)->with('organisation')->get();
             } else {
-                $users = User::where('organisation_id', $organisation)->where('is_active',1)->get();
+                $users = User::where('organisation_id', $organisation)->where('is_active',1)->with('organisation')->get();
             }
             return response()->json($users,200);
         }else if($order){
             if($status == 2){
-                $users = User::orderBy('first_name', $order)->get();
+                $users = User::orderBy('first_name', $order)->with('organisation')->get();
             } else if($status == '0'){
-                $users = User::orderBy('first_name', $order)->where('is_active',0)->get();
+                $users = User::orderBy('first_name', $order)->where('is_active',0)->with('organisation')->get();
             } else {
-                $users = User::orderBy('first_name', $order)->where('is_active',1)->get();
+                $users = User::orderBy('first_name', $order)->where('is_active',1)->with('organisation')->get();
             }
             return response()->json($users,200);
         } else if($status){
             if($status == 2){
-                $users = User::orderBy('organisation_id','asc')->get();
+                $users = User::orderBy('organisation_id','asc')->with('organisation')->get();
             } else if($status == '0'){
-                $users = User::orderBy('organisation_id','asc')->where('is_active',0)->get();
+                $users = User::orderBy('organisation_id','asc')->where('is_active',0)->with('organisation')->get();
             } else {
-                $users = User::orderBy('organisation_id','asc')->where('is_active',1)->get();            }
+                $users = User::orderBy('organisation_id','asc')->where('is_active',1)->with('organisation')->get();            }
             return response()->json($users,200);
         }
 
-        $users = User::orderBy('organisation_id','asc')->where('is_active',1)->get();
+        $users = User::orderBy('organisation_id','asc')->where('is_active',1)->with('organisation')->get();
         return response()->json($users,200);
     }
 
