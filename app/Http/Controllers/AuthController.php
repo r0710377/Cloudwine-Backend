@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,9 +34,17 @@ class AuthController extends Controller
     //register a user
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
+            'organisation_id' =>'int',
+            'first_name' => 'required|string|between:2,100',
+            'surname' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
+            'is_active' => 'required',
+            'is_admin' => 'required',
+            'is_superadmin' => 'required',
+            'can_message' => 'required',
+            'can_receive_notification' => 'required',
+            'gsm' => 'string'
         ]);
 
         if($validator->fails()){
@@ -57,7 +66,6 @@ class AuthController extends Controller
     // Log the user out (Invalidate the token)
     public function logout() {
         auth()->logout();
-
         return response()->json(['message' => 'User successfully signed out']);
     }
 
