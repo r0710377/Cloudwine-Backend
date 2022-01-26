@@ -26,6 +26,7 @@ class CreateWeatherStationsTable extends Migration
             $table->boolean('is_location_alarm')->default(false);
             $table->boolean('is_no_data_alarm')->default(false);
             $table->unsignedInteger('number_of_cycles')->nullable();
+            $table->boolean('manual_relais')->default(false);
             $table->timestamps();
 
             // Foreign key relation
