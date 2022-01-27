@@ -19,7 +19,8 @@ class WeatherStation extends Model
         'is_public',
         'is_location_alarm',
         'is_no_data_alarm',
-        'number_of_cycles'
+        'number_of_cycles',
+        'is_manual_relais'
     ];
 
     protected $hidden = [

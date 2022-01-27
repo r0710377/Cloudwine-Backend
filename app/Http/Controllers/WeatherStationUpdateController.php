@@ -17,7 +17,6 @@ class WeatherStationUpdateController extends Controller
     public function show($station_id,$update_id)
     {
         $stationUpdate = WeatherStationUpdate::where('weather_station_id',$station_id)->where('ota_update_id',$update_id)->get();
-
         return response()->json($stationUpdate);
 
     }
