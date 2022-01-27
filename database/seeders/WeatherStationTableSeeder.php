@@ -30,6 +30,7 @@ class WeatherStationTableSeeder extends Seeder
             'is_location_alarm' => false,
             'is_no_data_alarm' => false,
             'number_of_cycles' => 8,
+            'is_manual_relais' => false,
         ]);
 
         WeatherStation::create([
@@ -44,6 +45,7 @@ class WeatherStationTableSeeder extends Seeder
             'is_location_alarm' => false,
             'is_no_data_alarm' => false,
             'number_of_cycles' => null,
+            'is_manual_relais' => false,
 
         ]);
 
@@ -59,6 +61,8 @@ class WeatherStationTableSeeder extends Seeder
             'is_location_alarm' => false,
             'is_no_data_alarm' => false,
             'number_of_cycles' => 20,
+            'is_manual_relais' => false,
+
         ]);
 
         WeatherStation::create([
@@ -73,6 +77,7 @@ class WeatherStationTableSeeder extends Seeder
             'is_location_alarm' => true,
             'is_no_data_alarm' => false,
             'number_of_cycles' => null,
+            'is_manual_relais' => false,
         ]);
     }
 }
