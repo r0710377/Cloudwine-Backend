@@ -44,6 +44,7 @@ class UserController extends Controller
             'can_receive_notification' => 'required',
             'gsm' => 'string|unique:users,gsm|regex:/(04)[0-9]{8}/'
         ]);
+        //test
 
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
