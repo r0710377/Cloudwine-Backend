@@ -15,15 +15,18 @@ Route::get('alarms/gsm/{weather_station_gsm}', 'App\Http\Controllers\AlarmContro
 
 //USER
 Route::get('weatherstations/public', 'App\Http\Controllers\WeatherStationController@public');
+Route::post('/login', 'App\Http\Controllers\AuthController@login');
+Route::post('/register', 'App\Http\Controllers\AuthController@register');
 
+//VERWIJDEREN
+Route::get('users', 'App\Http\Controllers\UserController@index');
+Route::get('stationusers', 'App\Http\Controllers\WeatherStationUserController@index');
 
 //LOGGED USER
 Route::middleware(['auth'])->prefix('auth')->namespace('App\Http\Controllers')->group(function () {
 //    'namespace' => 'App\Http\Controllers',
 
     //LOGIN
-    Route::post('/login', 'AuthController@login');
-    Route::post('/register', 'AuthController@register');
     Route::post('/logout','AuthController@logout');
     Route::post('/refresh', 'AuthController@refresh');
     Route::get('/user-profile','AuthController@user-profile');
