@@ -99,7 +99,7 @@ class UserController extends Controller
             'organisation_id' =>'int|nullable',
             'first_name' => 'required|string|between:2,100',
             'surname' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users,email,' .$user->id ,
+            'email' => 'required|string|email|max:100|unique:users,email,' . $user->id ,
             'is_active' => 'required',
             'is_admin' => 'required',
             'is_superadmin' => 'required',

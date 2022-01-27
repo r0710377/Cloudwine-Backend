@@ -22,9 +22,16 @@ class OrganisationController extends Controller
         return Organisation::all();
     }
 
-    public function show(Organisation $organisation)
+    //for superadmin
+    public function details(Organisation $organisation)
     {
         return $organisation;
+    }
+
+    public function show()
+    {
+        $organisation = Organisation::where('id',auth()->user()->organisation_id)->get();
+        return response()->json($organisation[0]);
     }
 
     public function store(Request $request)
@@ -51,8 +58,10 @@ class OrganisationController extends Controller
 
     }
 
-    public function update(Request $request, Organisation $organisation)
+    public function update(Request $request)
     {
+        $organisation = Organisation::where('id', auth()->user()->organisation_id)->first();
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'address' => 'required|string|between:2,100',
