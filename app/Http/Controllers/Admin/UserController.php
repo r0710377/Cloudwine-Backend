@@ -38,7 +38,6 @@ class UserController extends Controller
             'surname' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
-            'is_active' => 'required',
             'is_admin' => 'required',
             'can_message' => 'required',
             'can_receive_notification' => 'required',
@@ -53,6 +52,7 @@ class UserController extends Controller
             $validator->validated(),
             [
                 'password' => bcrypt($request->password),
+                'is_active' => 1,
                 'organisation_id' => auth()->user()->organisation_id,
                 'is_superadmin' =>0
             ]

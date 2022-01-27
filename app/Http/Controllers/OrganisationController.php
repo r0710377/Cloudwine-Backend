@@ -42,19 +42,20 @@ class OrganisationController extends Controller
             'postal_code' => 'required|string|max:6',
             'city' => 'required|string',
             'country' => 'required',
-            'is_active' => 'required|boolean',
         ]);
 
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $organisation = Organisation::create($validator->validated());
+        $organisation = Organisation::create(array_merge(
+            $validator->validated(),
+                [
+                    'is_active' => 1,
+                ]
+        ));
 
-        return response()->json([
-            'message' => 'Organisation successfully created',
-            'organisation' => $organisation
-        ], 201);
+        return response()->json($organisation, 201);
 
     }
 
@@ -62,6 +63,25 @@ class OrganisationController extends Controller
     {
         $organisation = Organisation::where('id', auth()->user()->organisation_id)->first();
 
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'address' => 'required|string|between:2,100',
+            'postal_code' => 'required|string|max:6',
+            'city' => 'required|string',
+            'country' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $organisation->update($validator->validated());
+        return response()->json($organisation,200); //200 --> OK, The standard success code and default option
+    }
+
+    //VOOR DE SUPERADMIN
+    public function update1(Request $request, Organisation $organisation)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'address' => 'required|string|between:2,100',

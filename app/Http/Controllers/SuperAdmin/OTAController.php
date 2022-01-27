@@ -12,7 +12,6 @@ class OTAController extends Controller
         return OTA_Update::all();
     }
 
-
     public function store(Request $request)
     {
         $update = OTA_Update::create($request->all());
@@ -30,7 +29,7 @@ class OTAController extends Controller
         return response()->json($update,200); //200 --> OK, The standard success code and default option
     }
 
-    public function delete(OTA_Update $update)
+    public function destroy(OTA_Update $update)
     {
         $update->delete();
         return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return
