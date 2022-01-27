@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\WeatherStation;
+use App\Models\WeatherStationUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +19,7 @@ class AuthController extends Controller
     public function login(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -34,17 +36,17 @@ class AuthController extends Controller
     //register a user
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
-            'organisation_id' =>'int',
+            'organisation_id' =>'int|nullable',
             'first_name' => 'required|string|between:2,100',
             'surname' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
+            'email' => 'required|string|email|max:100|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
             'is_active' => 'required',
             'is_admin' => 'required',
             'is_superadmin' => 'required',
             'can_message' => 'required',
             'can_receive_notification' => 'required',
-            'gsm' => 'string'
+            'gsm' => 'string|unique:users,gsm|regex:/(04)[0-9]{8}/'
         ]);
 
         if($validator->fails()){
@@ -55,6 +57,20 @@ class AuthController extends Controller
             $validator->validated(),
             ['password' => bcrypt($request->password)]
         ));
+
+        //create stationusers when user is added
+        if($request->organisation_id !== null){
+            $weatherstations = WeatherStation::where('organisation_id',$request->get('organisation_id'))->get();
+            foreach ($weatherstations as $weatherstation){
+                WeatherStationUser::create([
+                    'weather_station_id' => $weatherstation->id,
+                    'user_id' => $user->id,
+                    'timeframe_temp' => null,
+                    'timerframe_hum' => null,
+                    'timeframe_lux' => null
+                ]);
+            }
+        }
 
         return response()->json([
             'message' => 'User successfully registered',
@@ -72,11 +88,6 @@ class AuthController extends Controller
     //Refresh a token
     public function refresh() {
         return $this->createNewToken(auth()->refresh());
-    }
-
-    // Get the authenticated User.
-    public function userProfile() {
-        return response()->json(auth()->user());
     }
 
     // Get the token array structure.

@@ -7,6 +7,8 @@ use App\Models\WeatherStationUser;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -44,7 +46,8 @@ class UserController extends Controller
             return response()->json($users,200);
         }
 
-        $users = User::orderBy('organisation_id','asc')->where('is_active',1)->get();
+//        $users = User::orderBy('organisation_id','asc')->where('is_active',1)->get();
+        $users = User::where('is_active',1)->get();
         return response()->json($users,200);
     }
 
@@ -71,10 +74,50 @@ class UserController extends Controller
 //            'can_receive_notification' => $request->can_receive_notification,
 //        ]);
 
-        $user = User::create($request->all());
+//        $user = User::create($request->all());
+//
+//        //create stationusers when user is added
+//        if($request->organisation_id !== null){
+//            $weatherstations = WeatherStation::where('organisation_id',$request->get('organisation_id'))->get();
+//            foreach ($weatherstations as $weatherstation){
+//                WeatherStationUser::create([
+//                    'weather_station_id' => $weatherstation->id,
+//                    'user_id' => $user->id,
+//                    'timeframe_temp' => null,
+//                    'timerframe_hum' => null,
+//                    'timeframe_lux' => null
+//                ]);
+//            }
+//        }
+//
+//        return response()->json($user, 201); //201 --> Object created. Usefull for the store actions
+    }
 
-        //create stationusers when user is added
-        if($request->organisation_id !== null){
+    public function update(Request $request, User $user)
+    {
+        $validator = Validator::make($request->all(), [
+            'organisation_id' =>'int|nullable',
+            'first_name' => 'required|string|between:2,100',
+            'surname' => 'required|string|between:2,100',
+            'email' => 'required|string|email|max:100|unique:users,email,' . $user->id ,
+            'is_active' => 'required',
+            'is_admin' => 'required',
+            'is_superadmin' => 'required',
+            'can_message' => 'required',
+            'can_receive_notification' => 'required',
+            'gsm' => 'string|regex:/(04)[0-9]{8}/|unique:users,gsm,' . $user->id
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        //delete existing weatherstationusers and add new if organisatioin is changed
+        if($request->organisation_id !== null && $request->organisation_id !== $user->organisation_id){
+            $stationUsers = WeatherStationUser::where('user_id',$user->id)->get();
+            foreach ($stationUsers as $stationUser){
+                $stationUser->delete();
+            }
             $weatherstations = WeatherStation::where('organisation_id',$request->get('organisation_id'))->get();
             foreach ($weatherstations as $weatherstation){
                 WeatherStationUser::create([
@@ -85,20 +128,18 @@ class UserController extends Controller
                     'timeframe_lux' => null
                 ]);
             }
+            //delete all stationusers when no organisation
+        } else if($request->organisation_id == null){
+            $stationUsers = WeatherStationUser::where('user_id',$user->id)->get();
+            foreach ($stationUsers as $stationUser){
+                $stationUser->delete();
+            }
         }
 
-        return response()->json($user, 201); //201 --> Object created. Usefull for the store actions
-    }
-
-    public function update(Request $request, User $user)
-    {
-        $user->update($request->all());
+        //update the user
+        if($validator->validated()){
+            $user->update($request->all());
+        }
         return response()->json($user,200); //200 --> OK, The standard success code and default option
     }
-
-//    public function delete(User $user)
-//    {
-//        $user->delete();
-//        return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return
-//    }
 }
