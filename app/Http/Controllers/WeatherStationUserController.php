@@ -19,6 +19,7 @@ class WeatherStationUserController extends Controller
         return response()->json($weatherStationUser,200); //200 --> OK, The standard success code and default option
     }
 
+
     public function update(Request $request,$weather_station_id)
     {
         $weatherStationUser = WeatherStationUser::where('user_id', auth()->id())->where('weather_station_id',$weather_station_id);

@@ -62,6 +62,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('App\Http\Contr
     //USER
     Route::get('users', 'Admin\UserController@index');
     Route::post('users', 'Admin\UserController@store');
+    Route::get('users/{user}', 'Admin\UserController@show');
     Route::put('users/{user}', 'Admin\UserController@update');
 
     //ALARM
@@ -72,7 +73,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('App\Http\Contr
     Route::delete('alarms/{alarm}', 'AlarmController@delete');
 
     //WEATHERSTATION
-    Route::put('weatherstations/{weatherStation}', 'WeatherStationController@update');
+    Route::get('weatherstations', 'Admin\WeatherStationController@index');
+    Route::get('weatherstations/{weatherStation}', 'Admin\WeatherStationController@index');
+    Route::put('weatherstations/{weatherStation}', 'Admin\WeatherStationController@update');
 });
 
 // SUPERADMIN
@@ -87,8 +90,12 @@ Route::middleware(['auth', 'superadmin'])->prefix('super')->namespace('App\Http\
     Route::get('users', 'SuperAdmin\UserController@index');
 
     //WEATHERSTATIONS
-    Route::get('weatherstations', 'WeatherStationController@index');
-    Route::post('weatherstations', 'WeatherStationController@store');
+    Route::resource('weatherstations', 'SuperAdmin\WeatherStationController');
+//    Route::get('weatherstations', 'WeatherStationController@index');
+//    Route::post('weatherstations', 'WeatherStationController@store');
+//    Route::get('weatherstations/{weather_station_id}', 'WeatherStationController@show');
+//    Route::put('weatherstations/{weatherStation}', 'WeatherStationController@update');
+
 
     //OTA UPDATE
     Route::resource('updates', 'SuperAdmin\OTAController');

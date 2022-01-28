@@ -14,8 +14,13 @@ class ValueController extends Controller
 {
     public function index(Request $request, $weather_station_id)
     {
+        $userStations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get('id');
 
-        $organisation = Organisation::where('organisation_id',auth()->user()->organisation_id)->get();
+        foreach ($userStations as $station){
+            if($station->id == $weather_station_id){
+
+            }
+        }
 
         $sensor = $request->get('sensor');
         $values = Value::where('weather_station_id', $weather_station_id)->with('graphType')->get();
@@ -81,7 +86,10 @@ class ValueController extends Controller
     {
         $weatherstation = WeatherStation::where('gsm',$weather_station_gsm)->first();
         $state = $weatherstation->switch_state;
-        return response()->json($state,200);
+        $manual = $weatherstation->is_manual_relais;
+        return response()->json([
+            'switch_state' => $state,
+            'is_manual_relais' => $manual],200);
     }
 
 
@@ -89,7 +97,8 @@ class ValueController extends Controller
     {
         // Validate $request
         $validator = Validator::make($request->all(), [
-            'switch_state' => 'required|boolean'
+            'switch_state' => 'required|boolean',
+            'is_manual_relais' => 'required|boolean'
         ]);
 
         if($validator->fails()){

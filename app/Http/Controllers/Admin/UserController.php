@@ -95,4 +95,9 @@ class UserController extends Controller
 
         return response()->json($user,200); //200 --> OK, The standard success code and default option
     }
+
+    public function show(User $user)
+    {
+        return $user;
+    }
 }
