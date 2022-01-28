@@ -45,6 +45,7 @@ Route::middleware(['auth'])->prefix('user')->namespace('App\Http\Controllers')->
 
     //WEATHERSTATION
     Route::get('weatherstations/{weatherStation}', 'WeatherStationController@show');
+    Route::get('weatherstations', 'Admin\WeatherStationController@index');
 
     //WEATHERSTATIONUSER
     Route::get('stationusers/{weather_station_id}', 'WeatherStationUserController@show');
@@ -73,8 +74,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('App\Http\Contr
     Route::delete('alarms/{alarm}', 'AlarmController@delete');
 
     //WEATHERSTATION
-    Route::get('weatherstations', 'Admin\WeatherStationController@index');
-    Route::get('weatherstations/{weatherStation}', 'Admin\WeatherStationController@index');
+    Route::get('weatherstations/{weatherStation}', 'Admin\WeatherStationController@show');
     Route::put('weatherstations/{weatherStation}', 'Admin\WeatherStationController@update');
 });
 
