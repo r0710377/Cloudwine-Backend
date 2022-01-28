@@ -81,10 +81,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('App\Http\Contr
 // SUPERADMIN
 Route::middleware(['auth', 'superadmin'])->prefix('super')->namespace('App\Http\Controllers')->group(function () {
     //ORGANISATION
-    Route::get('organisations', 'OrganisationController@index');
-    Route::get('organisations/{organisation}', 'OrganisationController@details');
-    Route::post('organisations', 'OrganisationController@store');
-    Route::put('organisations/{organisation}', 'OrganisationController@update1');
+    Route::resource('organisations', 'SuperAdmin\OrganisationController');
+//    Route::get('organisations', 'OrganisationController@index');
+//    Route::get('organisations/{organisation}', 'OrganisationController@details');
+//    Route::post('organisations', 'OrganisationController@store');
+//    Route::put('organisations/{organisation}', 'OrganisationController@update1');
 
     //USER
     Route::get('users', 'SuperAdmin\UserController@index');
