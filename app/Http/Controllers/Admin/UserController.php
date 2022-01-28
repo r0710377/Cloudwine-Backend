@@ -91,14 +91,24 @@ class UserController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        //update the user
-        $user->update($validator->validated());
-
-        return response()->json($user,200); //200 --> OK, The standard success code and default option
+        if(auth()->user()->organisation_id == $user->organisation_id){
+            $user->update($validator->validated());
+            return response()->json($user,200);
+        }else {
+            return response()->json([
+                'message' => 'Deze gebruiker zit niet bij jouw organisatie',
+            ], 401);
+        }
     }
 
     public function show(User $user)
     {
-        return $user;
+        if(auth()->user()->organisation_id == $user->organisation_id){
+            return $user;
+        }else {
+            return response()->json([
+                'message' => 'Deze gebruiker zit niet bij jouw organisatie',
+            ], 401);
+        }
     }
 }

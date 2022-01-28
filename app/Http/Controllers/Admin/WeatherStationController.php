@@ -47,7 +47,23 @@ class WeatherStationController extends Controller
 
     public function update(Request $request, WeatherStation $weatherStation)
     {
-        $weatherStation->update($request->all());
-        return response()->json($weatherStation,200); //200 --> OK, The standard success code and default option
+
+        if(auth()->user()->is_superadmin){
+            $weatherStation->update($request->all());
+            return response()->json($weatherStation,200);
+        }else {
+            $userStations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get('id');
+            foreach ($userStations as $station){
+                if($station->id == $weatherStation->id){
+                    $weatherStation->update($request->all());
+                    return response()->json($weatherStation,200);
+                }
+            }
+        }
+        return response()->json([
+            'message' => 'Dit weerstation zit niet bij jouw organisatie',
+        ], 401);
+
+         //200 --> OK, The standard success code and default option
     }
 }

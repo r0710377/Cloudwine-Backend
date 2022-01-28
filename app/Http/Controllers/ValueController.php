@@ -25,7 +25,6 @@ class ValueController extends Controller
         }
     }
 
-
     public function relais(WeatherStation $weatherStation)
     {
 
