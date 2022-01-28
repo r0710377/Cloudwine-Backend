@@ -18,10 +18,10 @@ Route::put('switchstate/{weather_station_gsm}','App\Http\Controllers\User\ValueC
 //USER
 Route::get('weatherstations', 'App\Http\Controllers\WeatherStationController@public');
 Route::get('weatherstations/{weatherStation}', 'App\Http\Controllers\WeatherStationController@publicid');
-Route::get('values/{weatherStation}', 'User\ValueController@index');
-Route::get('values/relais/{weatherStation}', 'ValueController@relais');
-Route::get('values/battery/{weatherStation}', 'ValueController@battery');
-Route::get('values/location/{weatherStation}', 'ValueController@location');
+Route::get('values/{weatherStation}', 'App\Http\Controllers\ValueController@index');
+Route::get('values/relais/{weatherStation}', 'App\Http\Controllers\ValueController@relais');
+Route::get('values/battery/{weatherStation}', 'App\Http\Controllers\ValueController@battery');
+Route::get('values/location/{weatherStation}', 'App\Http\Controllers\ValueController@location');
 
 Route::post('/login', 'App\Http\Controllers\AuthController@login');
 Route::post('/register', 'App\Http\Controllers\AuthController@register');
