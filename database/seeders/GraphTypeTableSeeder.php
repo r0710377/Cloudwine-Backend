@@ -15,7 +15,7 @@ class GraphTypeTableSeeder extends Seeder
     public function run()
     {
 
-        $types = ['gsm','time','RH','T1','T2','T3','RF','IRL','FLL','VIL','LUX','LW1','LW2','BAV','BAP','WD','WS','GLA','GLO','SWS','SWT','SWL','SWN'];
+        $types = ['gsm','time','RH','T1','T2','T3','RF','IRL','FLL','VIL','LUX','LW1','LW2','BAV','BAP','WD','WS','GLA','GLO','SWS'];
         $filter = [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0];
         $descriptions = ['String van Device Name',
             'Huidig tijd',
@@ -34,9 +34,6 @@ class GraphTypeTableSeeder extends Seeder
             'Battery voltage in percent',
             'Wind direction',
             'Wind speed',
-            '',
-            '',
-            '',
             '',
             '',
             '',

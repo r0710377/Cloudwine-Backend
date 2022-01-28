@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 //WEATHER STATION
 Route::post('values', 'App\Http\Controllers\User\ValueController@store');
 Route::get('alarms/gsm/{weather_station_gsm}', 'App\Http\Controllers\AlarmController@gsm');
+Route::get('switchstate/{weather_station_gsm}','App\Http\Controllers\User\ValueController@state');
+Route::put('switchstate/{weather_station_gsm}','App\Http\Controllers\User\ValueController@stateupdate');
 
 //USER
 Route::get('weatherstations/public', 'App\Http\Controllers\WeatherStationController@public');

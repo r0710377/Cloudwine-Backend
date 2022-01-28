@@ -14,7 +14,5 @@ class Admin
         }
 
         return abort(403, 'Only administrators can access this page');
-
-//        return $next($request);
     }
 }

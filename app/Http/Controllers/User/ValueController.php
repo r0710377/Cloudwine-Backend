@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller as Controller;
 
 use App\Models\GraphType;
 use App\Models\Organisation;
 use App\Models\Value;
 use App\Models\WeatherStation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ValueController extends Controller
 {
@@ -14,7 +16,7 @@ class ValueController extends Controller
     {
 
         $organisation = Organisation::where('organisation_id',auth()->user()->organisation_id)->get();
-        
+
         $sensor = $request->get('sensor');
         $values = Value::where('weather_station_id', $weather_station_id)->with('graphType')->get();
 
@@ -71,7 +73,38 @@ class ValueController extends Controller
                 ]);
         }
 
-        return response()->json(201); //201 --> Object created. Usefull for the store actions
+        return response()->json('data is created',201); //201 --> Object created. Usefull for the store actions
+
+    }
+
+    public function state($weather_station_gsm)
+    {
+        $weatherstation = WeatherStation::where('gsm',$weather_station_gsm)->first();
+        $state = $weatherstation->switch_state;
+        return response()->json($state,200);
+    }
+
+
+    public function stateupdate(Request $request,$weather_station_gsm)
+    {
+        // Validate $request
+        $validator = Validator::make($request->all(), [
+            'switch_state' => 'required|boolean'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $weatherstation = WeatherStation::where('gsm',$weather_station_gsm)->first();
+
+        //update the user
+        if($validator->validated()){
+            $weatherstation->update($request->all());
+        }
+
+        return response()->json([
+            'message' => 'Updated state successfully',
+        ], 200);
 
     }
 }

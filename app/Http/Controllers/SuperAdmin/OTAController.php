@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\Controller as Controller;
 
 use App\Models\OTA_Update;
 use Illuminate\Http\Request;

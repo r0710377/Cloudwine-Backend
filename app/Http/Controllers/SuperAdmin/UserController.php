@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\Controller as Controller;
 use App\Models\WeatherStation;
 use App\Models\WeatherStationUser;
 use Illuminate\Http\Request;
