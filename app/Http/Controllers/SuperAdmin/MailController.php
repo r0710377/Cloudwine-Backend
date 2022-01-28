@@ -54,8 +54,6 @@ class MailController extends Controller
     public function destroy(Mail $mail)
     {
         $mail->delete();
-        return response()->json([
-            'message' => 'deleted mail successfully',
-        ], 204);
+        return response()->json(204);
     }
 }

@@ -23,18 +23,18 @@ class UsersTableSeeder extends Seeder
         // Let's make sure everyone has the same password and
         // let's hash it before the loop, or else our seeder
         // will be too slow.
-        $password = Hash::make('test1');
+        $password = Hash::make('admin123');
 
         //SUPERADMIN
         User::create([
             'organisation_id' => null,
             'first_name' => 'SuperAdmin',
             'surname' => '420',
-            'email' => 'superdmin@test.com',
+            'email' => 'super@super.com',
             'gsm' => '0470541285',
             'password' => $password,
             'is_active' => true,
-            'is_admin' => false,
+            'is_admin' => true,
             'is_superadmin' => true,
             'can_message' => true,
             'can_receive_notification' => true,
@@ -55,10 +55,24 @@ class UsersTableSeeder extends Seeder
             'can_receive_notification' => false,
         ]);
 
+        //standaard user
+        User::create([
+            'organisation_id' => 1,
+            'first_name' => 'user',
+            'surname' => '1',
+            'email' => 'user@user.com',
+            'gsm' => '0470522233',
+            'password' => $password,
+            'is_active' => true,
+            'is_admin' => false,
+            'is_superadmin' => false,
+            'can_message' => true,
+            'can_receive_notification' => false,
+        ]);
+
         // ORGANISATIE 1
         for ($i = 0; $i < 3; $i++) {
             User::create([
-//                'organization_id' => $faker->numberBetween(1, 3),
                 'organisation_id' => 1,
                 'first_name' => $faker->firstName,
                 'surname' => $faker->lastName,

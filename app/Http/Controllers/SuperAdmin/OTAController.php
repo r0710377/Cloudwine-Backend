@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\Controller as Controller;
 
 use App\Models\OTA_Update;
 use Illuminate\Http\Request;
@@ -11,7 +12,6 @@ class OTAController extends Controller
     {
         return OTA_Update::all();
     }
-
 
     public function store(Request $request)
     {
@@ -30,7 +30,7 @@ class OTAController extends Controller
         return response()->json($update,200); //200 --> OK, The standard success code and default option
     }
 
-    public function delete(OTA_Update $update)
+    public function destroy(OTA_Update $update)
     {
         $update->delete();
         return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return

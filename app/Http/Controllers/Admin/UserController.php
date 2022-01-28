@@ -16,6 +16,7 @@ class UserController extends Controller
         $organisation = auth()->user()->organisation_id;
         $status = $request->get('active');
 
+
         if($organisation && $status){
             if($status == 2){
                 $users = User::where('organisation_id', $organisation)->where('is_active',0)->get();
@@ -38,7 +39,6 @@ class UserController extends Controller
             'surname' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
-            'is_active' => 'required',
             'is_admin' => 'required',
             'can_message' => 'required',
             'can_receive_notification' => 'required',
@@ -53,6 +53,7 @@ class UserController extends Controller
             $validator->validated(),
             [
                 'password' => bcrypt($request->password),
+                'is_active' => 1,
                 'organisation_id' => auth()->user()->organisation_id,
                 'is_superadmin' =>0
             ]
@@ -90,9 +91,24 @@ class UserController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        //update the user
-        $user->update($validator->validated());
+        if(auth()->user()->organisation_id == $user->organisation_id){
+            $user->update($validator->validated());
+            return response()->json($user,200);
+        }else {
+            return response()->json([
+                'message' => 'Deze gebruiker zit niet bij jouw organisatie',
+            ], 401);
+        }
+    }
 
-        return response()->json($user,200); //200 --> OK, The standard success code and default option
+    public function show(User $user)
+    {
+        if(auth()->user()->organisation_id == $user->organisation_id){
+            return $user;
+        }else {
+            return response()->json([
+                'message' => 'Deze gebruiker zit niet bij jouw organisatie',
+            ], 401);
+        }
     }
 }

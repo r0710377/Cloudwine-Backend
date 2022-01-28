@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuperAdmin;
+use App\Http\Controllers\Controller as Controller;
 
 use App\Models\WeatherStationUpdate;
 use Illuminate\Http\Request;
@@ -11,14 +12,12 @@ class WeatherStationUpdateController extends Controller
     public function index()
     {
         return WeatherStationUpdate::with(['weatherStation','otaUpdate'])->get();
-
     }
 
     public function show($station_id,$update_id)
     {
         $stationUpdate = WeatherStationUpdate::where('weather_station_id',$station_id)->where('ota_update_id',$update_id)->get();
         return response()->json($stationUpdate);
-
     }
 
     public function specificUpdate($update_id)
