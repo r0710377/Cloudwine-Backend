@@ -56,41 +56,49 @@ class UserController extends Controller
         return User::find($id);
     }
 
-    public function store(Request $request)
-    {
-//        $password= Hash::make('test1');
-        //create the user
-//        $user = User::create([
-//            'organisation_id' => $request->organisation_id,
-//            'first_name' => $request->first_name,
-//            'surname' => $request->surname,
-//            'email' => $request->email,
-//            'gsm' => $request->gsm,
-//            'password' => $password,
-//            'is_active' => $request->is_active,
-//            'is_admin' => $request->is_admin,
-//            'is_superadmin' => $request->is_superadmin,
-//            'can_message' => $request->can_message,
-//            'can_receive_notification' => $request->can_receive_notification,
-//        ]);
+    //register a user
+    public function store(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'organisation_id' =>'int|nullable',
+            'first_name' => 'required|string|between:2,100',
+            'surname' => 'required|string|between:2,100',
+            'email' => 'required|string|email|max:100|unique:users,email',
+            'password' => 'required|string|confirmed|min:6',
+            'is_active' => 'required',
+            'is_admin' => 'required',
+            'is_superadmin' => 'required',
+            'can_message' => 'required',
+            'can_receive_notification' => 'required',
+            'gsm' => 'string|unique:users,gsm|regex:/(04)[0-9]{8}/'
+        ]);
 
-//        $user = User::create($request->all());
-//
-//        //create stationusers when user is added
-//        if($request->organisation_id !== null){
-//            $weatherstations = WeatherStation::where('organisation_id',$request->get('organisation_id'))->get();
-//            foreach ($weatherstations as $weatherstation){
-//                WeatherStationUser::create([
-//                    'weather_station_id' => $weatherstation->id,
-//                    'user_id' => $user->id,
-//                    'timeframe_temp' => null,
-//                    'timerframe_hum' => null,
-//                    'timeframe_lux' => null
-//                ]);
-//            }
-//        }
-//
-//        return response()->json($user, 201); //201 --> Object created. Usefull for the store actions
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user = User::create(array_merge(
+            $validator->validated(),
+            ['password' => bcrypt($request->password)]
+        ));
+
+        //create stationusers when user is added
+        if($request->organisation_id !== null){
+            $weatherstations = WeatherStation::where('organisation_id',$request->get('organisation_id'))->get();
+            foreach ($weatherstations as $weatherstation){
+                WeatherStationUser::create([
+                    'weather_station_id' => $weatherstation->id,
+                    'user_id' => $user->id,
+                    'timeframe_temp' => null,
+                    'timerframe_hum' => null,
+                    'timeframe_lux' => null
+                ]);
+            }
+        }
+
+        return response()->json([
+            'message' => 'User successfully registered',
+            'user' => $user
+        ], 201);
     }
 
     public function update(Request $request, User $user)

@@ -16,12 +16,15 @@ Route::get('switchstate/{weather_station_gsm}','App\Http\Controllers\User\ValueC
 Route::put('switchstate/{weather_station_gsm}','App\Http\Controllers\User\ValueController@stateupdate');
 
 //USER
-Route::get('weatherstations/public', 'App\Http\Controllers\WeatherStationController@public');
+Route::get('weatherstations', 'App\Http\Controllers\WeatherStationController@public');
+Route::get('weatherstations/{weatherStation}', 'App\Http\Controllers\WeatherStationController@publicid');
+Route::get('values/{weatherStation}', 'User\ValueController@index');
+Route::get('values/relais/{weatherStation}', 'ValueController@relais');
+Route::get('values/battery/{weatherStation}', 'ValueController@battery');
+Route::get('values/location/{weatherStation}', 'ValueController@location');
+
 Route::post('/login', 'App\Http\Controllers\AuthController@login');
 Route::post('/register', 'App\Http\Controllers\AuthController@register');
-
-//VERWIJDEREN
-Route::get('users', 'App\Http\Controllers\UserController@index');
 
 //LOGGED USER
 Route::middleware(['auth'])->prefix('user')->namespace('App\Http\Controllers')->group(function () {
@@ -44,7 +47,7 @@ Route::middleware(['auth'])->prefix('user')->namespace('App\Http\Controllers')->
     Route::get('values/location/{weather_station_id}', 'User\ValueController@location');
 
     //WEATHERSTATION
-    Route::get('weatherstations/{weatherStation}', 'WeatherStationController@show');
+    Route::get('weatherstations/{weatherStation}', 'Admin\WeatherStationController@show');
     Route::get('weatherstations', 'Admin\WeatherStationController@index');
 
     //WEATHERSTATIONUSER

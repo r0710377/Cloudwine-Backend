@@ -14,21 +14,27 @@ class ValueController extends Controller
 {
     public function index(Request $request, $weather_station_id)
     {
-        $userStations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get('id');
-
-        foreach ($userStations as $station){
-            if($station->id == $weather_station_id){
-
-            }
-        }
-
         $sensor = $request->get('sensor');
         $values = Value::where('weather_station_id', $weather_station_id)->with('graphType')->get();
 
-        if($sensor) {
-            $values = Value::where('weather_station_id', $weather_station_id)->where('graph_type_id',$sensor)->with('graphType')->get();
+        if(auth()->user()->is_superadmin){
+            return response()->json($values,200);
+        }else {
+            $userStations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get('id');
+            foreach ($userStations as $station){
+                if($station->id == $weather_station_id){
+                    if($sensor) {
+                        $values = Value::where('weather_station_id', $weather_station_id)->where('graph_type_id',$sensor)->with('graphType')->get();
+                    }
+                    return response()->json($values,200);
+                }
+            }
         }
-        return response()->json($values,200);
+
+        return response()->json([
+            'message' => 'Dit weerstation zit niet bij jouw organisatie',
+        ], 401);
+
     }
 
 
@@ -60,9 +66,23 @@ class ValueController extends Controller
             $query->where('name','GLA');
         })->with('graphType')->latest()->first();;
 
-        return response()->json([$longitude,$latitude],200); //200 --> OK, The standard success code and default option
+        if(auth()->user()->is_superadmin){
+            return response()->json([$longitude,$latitude],200);
+        }else {
+            $userStations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get('id');
+            foreach ($userStations as $station){
+                if($station->id == $weather_station_id){
+                    return response()->json([$longitude,$latitude],200);
+                }
+            }
+        }
+
+        return response()->json([
+            'message' => 'Dit weerstation zit niet bij jouw organisatie',
+        ], 401);
     }
 
+    //ALLEEN VOOR WEERSTATION
     public function store(Request $request)
     {
         $graphTypes = GraphType::all();
@@ -82,6 +102,7 @@ class ValueController extends Controller
 
     }
 
+    //ALLEEN VOOR WEERSTATION
     public function state($weather_station_gsm)
     {
         $weatherstation = WeatherStation::where('gsm',$weather_station_gsm)->first();
@@ -92,7 +113,7 @@ class ValueController extends Controller
             'is_manual_relais' => $manual],200);
     }
 
-
+    //ALLEEN VOOR WEERSTATION
     public function stateupdate(Request $request,$weather_station_gsm)
     {
         // Validate $request

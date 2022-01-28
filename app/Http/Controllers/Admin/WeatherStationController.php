@@ -29,7 +29,20 @@ class WeatherStationController extends Controller
 
     public function show(WeatherStation $weatherStation)
     {
-        return $weatherStation;
+        if(auth()->user()->is_superadmin){
+            return $weatherStation;
+        }else {
+            $userStations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get('id');
+            foreach ($userStations as $station){
+                if($station->id == $weatherStation->id){
+                    return $weatherStation;
+                }
+            }
+        }
+        return response()->json([
+            'message' => 'Dit weerstation zit niet bij jouw organisatie',
+        ], 401);
+
     }
 
     public function update(Request $request, WeatherStation $weatherStation)

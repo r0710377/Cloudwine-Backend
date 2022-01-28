@@ -16,6 +16,7 @@ class UserController extends Controller
         $organisation = auth()->user()->organisation_id;
         $status = $request->get('active');
 
+
         if($organisation && $status){
             if($status == 2){
                 $users = User::where('organisation_id', $organisation)->where('is_active',0)->get();
