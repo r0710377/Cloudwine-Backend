@@ -10,6 +10,7 @@ class WeatherStationUpdate extends Model
     protected $fillable = [
         'ota_update_id',
         'weather_station_id',
+        'is_installed'
     ];
 
     protected $hidden = [

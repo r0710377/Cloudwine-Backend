@@ -25,5 +25,11 @@ class otaTableSeeder extends Seeder
             'name' => 'Update 1.2',
             'deploy_on' => '22-1-28 8:54:12',
         ]);
+
+        OTA_Update::create([
+            'bin_file_path' => 'c:/test/test',
+            'name' => 'Update test',
+            'deploy_on' => '22-2-05 8:54:12',
+        ]);
     }
 }

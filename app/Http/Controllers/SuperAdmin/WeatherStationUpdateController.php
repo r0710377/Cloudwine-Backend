@@ -43,4 +43,6 @@ class WeatherStationUpdateController extends Controller
         $stationUpdate->delete();
         return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return
     }
+
+
 }
