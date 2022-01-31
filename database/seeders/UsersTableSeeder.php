@@ -28,8 +28,8 @@ class UsersTableSeeder extends Seeder
         //SUPERADMIN
         User::create([
             'organisation_id' => null,
-            'first_name' => 'SuperAdmin',
-            'surname' => '420',
+            'first_name' => 'Super',
+            'surname' => 'Admin',
             'email' => 'super@super.com',
             'gsm' => '0470541285',
             'password' => $password,
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'organisation_id' => 1,
             'first_name' => 'Administrator',
-            'surname' => '1',
+            'surname' => 'rotart',
             'email' => 'admin@admin.com',
             'gsm' => '0425896547',
             'password' => $password,
@@ -59,7 +59,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'organisation_id' => 1,
             'first_name' => 'user',
-            'surname' => '1',
+            'surname' => 'resu',
             'email' => 'user@user.com',
             'gsm' => '0470522233',
             'password' => $password,
@@ -92,7 +92,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'organisation_id' => 2,
             'first_name' => 'Administrator',
-            'surname' => '2',
+            'surname' => 'rotar2',
             'email' => 'admin2@admin2.com',
             'gsm' => '0422222222',
             'password' => $password,
@@ -126,7 +126,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'organisation_id' => 3,
             'first_name' => 'Administrator',
-            'surname' => '3',
+            'surname' => 'rotar3',
             'email' => 'admin3@admin3.com',
             'gsm' => '0433333333',
             'password' => $password,

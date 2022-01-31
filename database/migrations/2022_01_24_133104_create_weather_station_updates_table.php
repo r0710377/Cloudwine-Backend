@@ -17,6 +17,7 @@ class CreateWeatherStationUpdatesTable extends Migration
             $table->id();
             $table->foreignId('ota_update_id');
             $table->foreignId('weather_station_id');
+            $table->boolean('is_installed')->default(false);
             $table->timestamps();
 
             // Foreign key relation
