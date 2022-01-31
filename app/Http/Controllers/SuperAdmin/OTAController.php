@@ -53,7 +53,7 @@ class OTAController extends Controller
         if($validator->validated()){
             $update->update($request->all());
         }
-        
+
         return response()->json($update,200); //200 --> OK, The standard success code and default option
     }
 
