@@ -20,7 +20,7 @@ class ValueTableSeeder extends Seeder
 
         //ADD DATA WHEATERSTATION 1
         for ($a = 0; $a < 4; $a++) {
-            $date = $faker->dateTimeBetween('-5 day', '+ 1 day');
+            $date = $faker->dateTimeBetween('-3 day', '+ 1 day');
             for ($i = 1; $i < 21; $i++) {
                 Value::create([
                     'weather_station_id' => 1,
@@ -33,7 +33,7 @@ class ValueTableSeeder extends Seeder
 
         //ADD DATA WHEATERSTATION 2
         for ($a = 0; $a < 4; $a++) {
-            $date = $faker->dateTimeBetween('-5 day', '+ 1 day');
+            $date = $faker->dateTimeBetween('-3 day', '+ 1 day');
             for ($i = 1; $i < 21; $i++) {
                 Value::create([
                     'weather_station_id' => 2,
@@ -46,7 +46,7 @@ class ValueTableSeeder extends Seeder
 
         //ADD DATA WHEATERSTATION 3
         for ($a = 0; $a < 4; $a++) {
-            $date = $faker->dateTimeBetween('-5 day', '+ 1 day');
+            $date = $faker->dateTimeBetween('-3 day', '+ 1 day');
             for ($i = 1; $i < 21; $i++) {
                 Value::create([
                     'weather_station_id' => 3,
@@ -59,7 +59,7 @@ class ValueTableSeeder extends Seeder
 
         //ADD DATA WHEATERSTATION 4
         for ($a = 0; $a < 4; $a++) {
-            $date = $faker->dateTimeBetween('-5 day', '+ 1 day');
+            $date = $faker->dateTimeBetween('-3 day', '+ 1 day');
             for ($i = 1; $i < 21; $i++) {
                 Value::create([
                     'weather_station_id' => 4,

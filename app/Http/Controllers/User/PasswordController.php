@@ -18,7 +18,7 @@ class PasswordController extends Controller
         // Validate $request
         $validator = Validator::make($request->all(), [
             'current_password' => 'required',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|confirmed|min:6',
         ]);
 
         if($validator->fails()){

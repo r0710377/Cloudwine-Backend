@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller as Controller;
 
 use App\Models\WeatherStationUpdate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class WeatherStationUpdateController extends Controller
 {
@@ -34,7 +35,23 @@ class WeatherStationUpdateController extends Controller
 
     public function store(Request $request)
     {
-        $stationUpdate = WeatherStationUpdate::create($request->all());
+        $validator = Validator::make($request->all(), [
+            'ota_update_id' => 'required|integer',
+            'weather_station_id' => 'required|integer',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        if($validator->validated()){
+            $stationUpdate = WeatherStationUpdate::create(array_merge(
+                $validator->validated(),
+                [
+                    'is_installed' => 0,
+                ]
+            ));
+        }
         return response()->json($stationUpdate, 201); //201 --> Object created. Usefull for the store actions
     }
 
