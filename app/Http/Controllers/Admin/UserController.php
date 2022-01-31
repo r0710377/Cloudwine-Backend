@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ActivationMail;
 use App\Models\User;
 use App\Models\WeatherStation;
 use App\Models\WeatherStationUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -38,7 +40,6 @@ class UserController extends Controller
             'first_name' => 'required|string|between:2,100',
             'surname' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users,email',
-            'password' => 'required|string|confirmed|min:6',
             'is_admin' => 'required',
             'can_message' => 'required',
             'can_receive_notification' => 'required',
@@ -49,15 +50,28 @@ class UserController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
+        $random = Str::random(20);
+
         $user = User::create(array_merge(
             $validator->validated(),
             [
-                'password' => bcrypt($request->password),
+                'password' => bcrypt($random),
                 'is_active' => 1,
                 'organisation_id' => auth()->user()->organisation_id,
                 'is_superadmin' =>0
             ]
         ));
+
+        //MAIL
+        $details = [
+            'title' => 'Welkom bij Wijnbouwer.be',
+            'body' => 'De administrator van xxx heeft u toegevoegd bij zijn organisatie, je kan jezelf inloggen op https://www.wijnbouwer.be/ met het onderstaande wachtwoord. Vergeet zeker je wachtwoord niet te veranderen',
+            'password' => $random
+        ];
+
+        \Mail::to($request->email)->send(new ActivationMail($details));
+
+        //ENDMAIL
 
         //create stationusers when user is added
         $weatherstations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get();

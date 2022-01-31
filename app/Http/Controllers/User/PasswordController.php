@@ -48,4 +48,10 @@ class PasswordController extends Controller
         ], 201);
     }
 
+    // Update and encrypt user password
+    public function forgot(Request $request)
+    {
+      
+    }
+
 }
