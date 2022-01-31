@@ -46,7 +46,7 @@ class UserController extends Controller
             return response()->json($users,200);
         }
 //        $users = User::orderBy('organisation_id','asc')->where('is_active',1)->get();
-        $users = User::where('is_active',1)->get();
+        $users = User::where('is_active',1)->with('organisation')->get();
 
         return response()->json($users,200);
     }

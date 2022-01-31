@@ -37,10 +37,11 @@ Route::put('stationusers/{weather_station_id}', 'App\Http\Controllers\WeatherSta
 
 //LOGGED USER
 Route::middleware(['auth'])->prefix('user')->namespace('App\Http\Controllers')->group(function () {
-    Route::redirect('/', '/user/profile');
+//    Route::redirect('/', '/user/profile');
+    Route::post('password', 'User\PasswordController@update');
     Route::get('profile', 'User\ProfileController@edit');
     Route::put('profile', 'User\ProfileController@update');
-    Route::post('password', 'User\PasswordController@update');
+
     //LOGIN
     Route::post('/logout','AuthController@logout');
     Route::post('/refresh', 'AuthController@refresh'); //refresh token
@@ -51,6 +52,8 @@ Route::middleware(['auth'])->prefix('user')->namespace('App\Http\Controllers')->
     Route::get('values/relais/{weather_station_id}', 'User\ValueController@relais');
     Route::get('values/battery/{weather_station_id}', 'User\ValueController@battery');
     Route::get('values/location/{weather_station_id}', 'User\ValueController@location');
+    Route::get('values/test/{weather_station_id}', 'User\ValueController@timeframe');
+
     //WEATHERSTATION
     Route::get('weatherstations/{weatherStation}', 'Admin\WeatherStationController@show');
     Route::get('weatherstations', 'Admin\WeatherStationController@index');

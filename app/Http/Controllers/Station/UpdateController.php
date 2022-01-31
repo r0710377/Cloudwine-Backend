@@ -29,11 +29,9 @@ class UpdateController extends Controller
         $validator = Validator::make($request->all(), [
             'is_installed' => 'required|boolean',
         ]);
-
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-
         if ($weatherstation && $validator->validated()){
             $stationUpdates = WeatherStationUpdate::where('weather_station_id',$weatherstation->id)->get('id');
             foreach ($stationUpdates as $stationUpdate){

@@ -103,7 +103,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        if(auth()->user()->organisation_id == $user->organisation_id){
+        if(auth()->user()->is_superadmin){
+            return $user;
+        } else if(auth()->user()->organisation_id == $user->organisation_id){
             return $user;
         }else {
             return response()->json([

@@ -9,22 +9,49 @@ use App\Models\Value;
 use App\Models\WeatherStation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+
 
 class ValueController extends Controller
 {
     public function index(Request $request, $weather_station_id)
     {
         $sensor = $request->get('sensor');
-        $values = Value::where('weather_station_id', $weather_station_id)->with('graphType')->get();
+        $from = date($request->get('start'));
+        $to = date($request->get('stop'));
+
+        if(!$from){
+            $from = Carbon::now()->subDays(2)->toDateString();
+        }
+        if(!$to){
+            //add one day for the 'inbetween' function
+            $to = Carbon::now()->addDays(1)->toDateString();
+        }
+
+        $values = Value::where('weather_station_id', $weather_station_id)
+            ->with('graphType')
+            ->whereBetween('timestamp',[$from,$to])
+            ->get();
 
         if(auth()->user()->is_superadmin){
+            if($sensor) {
+                $values = Value::where('weather_station_id', $weather_station_id)
+                    ->where('graph_type_id',$sensor)
+                    ->whereBetween('timestamp',[$from,$to])
+                    ->with('graphType')
+                    ->get();
+            }
             return response()->json($values,200);
         }else {
             $userStations = WeatherStation::where('organisation_id',auth()->user()->organisation_id)->get('id');
             foreach ($userStations as $station){
                 if($station->id == $weather_station_id){
                     if($sensor) {
-                        $values = Value::where('weather_station_id', $weather_station_id)->where('graph_type_id',$sensor)->with('graphType')->get();
+                        $values = Value::where('weather_station_id', $weather_station_id)
+                            ->where('graph_type_id',$sensor)
+                            ->whereBetween('timestamp',[$from,$to])
+                            ->with('graphType')
+                            ->get();
                     }
                     return response()->json($values,200);
                 }
@@ -80,5 +107,23 @@ class ValueController extends Controller
         return response()->json([
             'message' => 'Dit weerstation zit niet bij jouw organisatie',
         ], 401);
+    }
+
+
+    public function timeframe(Request $request,$weather_station_id)
+    {
+        $from = date($request->get('start'));
+//        $to = date($request->get('stop'));
+        $to = date($request->get('stop'));
+
+        if(!$to){
+            //add one day for the 'inbetween' function
+            $to = Carbon::now()->addDays(1)->toDateString();
+        }
+
+        $values = Value::where('weather_station_id', $weather_station_id)->whereBetween('timestamp',[$from,$to])->with('graphType')->get();
+
+
+        return response()->json($to,401);
     }
 }
