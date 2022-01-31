@@ -16,6 +16,7 @@ Route::get('switchstate/{weather_station_gsm}','App\Http\Controllers\Station\Val
 Route::put('switchstate/{weather_station_gsm}','App\Http\Controllers\Station\ValueController@stateupdate');
 Route::get('update/{weather_station_gsm}','App\Http\Controllers\Station\UpdateController@latestUpdate');
 Route::put('update/{weather_station_gsm}/{station_update}','App\Http\Controllers\Station\UpdateController@update');
+Route::get('gsm/{weather_station_gsm}','App\Http\Controllers\Station\PhoneController@index');
 
 //VISITOR
 Route::get('weatherstations', 'App\Http\Controllers\WeatherStationController@public');
