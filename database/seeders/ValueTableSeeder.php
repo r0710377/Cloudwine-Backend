@@ -19,7 +19,7 @@ class ValueTableSeeder extends Seeder
 
 
         //ADD DATA WHEATERSTATION 1
-        for ($a = 0; $a < 4; $a++) {
+        for ($a = 0; $a < 8; $a++) {
             $date = $faker->dateTimeBetween('-1 day', '+ 1 day');
             for ($i = 1; $i < 21; $i++) {
                 Value::create([
@@ -32,7 +32,7 @@ class ValueTableSeeder extends Seeder
         }
 
         //ADD DATA WHEATERSTATION 2
-        for ($a = 0; $a < 4; $a++) {
+        for ($a = 0; $a < 8; $a++) {
             $date = $faker->dateTimeBetween('-1 day', '+ 1 day');
             for ($i = 1; $i < 21; $i++) {
                 Value::create([
@@ -45,7 +45,7 @@ class ValueTableSeeder extends Seeder
         }
 
         //ADD DATA WHEATERSTATION 3
-        for ($a = 0; $a < 4; $a++) {
+        for ($a = 0; $a < 8; $a++) {
             $date = $faker->dateTimeBetween('-1 day', '+ 1 day');
             for ($i = 1; $i < 21; $i++) {
                 Value::create([

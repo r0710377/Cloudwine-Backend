@@ -11,14 +11,16 @@ class OrganisationController extends Controller
 {
     public function index()
     {
-        if(request()->order){
-            $organisation = Organisation::orderBy('name', request()->order)->get();
-            if (request()->active){
-                $organisation = Organisation::orderBy('name', request()->order)->where('is_active', request()->active)->get();
-            }
-            return response()->json($organisation,200);
+        $status = request()->active;
+
+        if($status == 2){
+            $organisation = Organisation::where('is_active', 0)->get();
+        } else if($status == 1){
+            $organisation = Organisation::get();
+        } else {
+            $organisation = Organisation::where('is_active', 1)->get();
         }
-        return Organisation::all();
+        return response()->json($organisation,200);
     }
 
     public function show(Organisation $organisation)

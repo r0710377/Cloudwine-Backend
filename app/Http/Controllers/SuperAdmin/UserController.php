@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller as Controller;
 use App\Mail\ActivationMail;
-use App\Mail\ActiveMail;
-use App\Mail\SendDemoMail;
 use App\Models\WeatherStation;
 use App\Models\WeatherStationUser;
 use Illuminate\Http\Request;
@@ -34,7 +32,7 @@ class UserController extends Controller
         }else if($order){
             if($status == 2){
                 $users = User::orderBy('first_name', $order)->where('is_active',0)->with('organisation')->get();
-            } else if($status == '0'){
+            } else if($status == 1){
                 $users = User::orderBy('first_name', $order)->with('organisation')->get();
             } else {
                 $users = User::orderBy('first_name', $order)->where('is_active',1)->with('organisation')->get();
@@ -43,7 +41,7 @@ class UserController extends Controller
         } else if($status){
             if($status == 2){
                 $users = User::orderBy('organisation_id','asc')->where('is_active',0)->with('organisation')->get();
-            } else if($status == '0'){
+            } else if($status == 1){
                 $users = User::orderBy('organisation_id','asc')->with('organisation')->get();
             } else {
                 $users = User::orderBy('organisation_id','asc')->where('is_active',1)->with('organisation')->get();            }

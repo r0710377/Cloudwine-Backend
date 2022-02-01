@@ -16,12 +16,21 @@ class WeatherStationController extends Controller
         $status = $request->get('active');
 
         if($organisation){
-            if($status == 2){
+            if($status == 1){
                 $weatherstations = WeatherStation::where('organisation_id', $organisation)->get();
-            } else if($status == '0'){
+            } else if($status == 2){
                 $weatherstations = WeatherStation::where('organisation_id', $organisation)->where('is_active',0)->get();
             } else {
                 $weatherstations = WeatherStation::where('organisation_id', $organisation)->where('is_active',1)->get();
+            }
+            return response()->json($weatherstations,200);
+        } else if($status){
+            if($status == 2){
+                $weatherstations = WeatherStation::where('is_active',0)->get();
+            } else if($status == 1){
+                $weatherstations = WeatherStation::all();
+            } else {
+                $weatherstations = WeatherStation::where('is_active', 1)->get();
             }
             return response()->json($weatherstations,200);
         }
