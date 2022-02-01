@@ -22,7 +22,7 @@ class UpdateController extends Controller
 
     }
 
-    public function update($weather_station_gsm, Request $request, WeatherStationUpdate $station_update)
+    public function update( Request $request, WeatherStationUpdate $station_update,$weather_station_gsm)
     {
         $weatherstation = WeatherStation::where('gsm',$weather_station_gsm)->first();
 
@@ -33,10 +33,11 @@ class UpdateController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         if ($weatherstation && $validator->validated()){
+//        if ($weatherstation){
             $stationUpdates = WeatherStationUpdate::where('weather_station_id',$weatherstation->id)->get('id');
             foreach ($stationUpdates as $stationUpdate){
                 if($stationUpdate->id == $station_update->id){
-                    $station_update->update($validator->validated());
+                    $station_update->update($request->all());
                     return response()->json($station_update,200);
                 }
             }

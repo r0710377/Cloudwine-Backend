@@ -15,7 +15,7 @@ Route::get('alarms/gsm/{weather_station_gsm}', 'App\Http\Controllers\Station\Ala
 Route::get('switchstate/{weather_station_gsm}','App\Http\Controllers\Station\ValueController@state');
 Route::put('switchstate/{weather_station_gsm}','App\Http\Controllers\Station\ValueController@stateupdate');
 Route::get('update/{weather_station_gsm}','App\Http\Controllers\Station\UpdateController@latestUpdate');
-Route::put('update/{weather_station_gsm}/{station_update}','App\Http\Controllers\Station\UpdateController@update');
+Route::put('update/{station_update}/{weather_station_gsm}','App\Http\Controllers\Station\UpdateController@update');
 Route::get('gsm/{weather_station_gsm}','App\Http\Controllers\Station\PhoneController@index');
 
 //VISITOR
@@ -26,14 +26,13 @@ Route::get('values/relais/{weatherStation}', 'App\Http\Controllers\ValueControll
 Route::get('values/battery/{weatherStation}', 'App\Http\Controllers\ValueController@battery');
 Route::get('values/location/{weatherStation}', 'App\Http\Controllers\ValueController@location');
 
-Route::post('/login', 'App\Http\Controllers\AuthController@login');
+Route::post('login', 'App\Http\Controllers\AuthController@login');
+Route::post('reset', 'App\Http\Controllers\User\PasswordController@reset');
 //Route::post('/register', 'App\Http\Controllers\AuthController@register');
 
 //VERWIJDEREN
-Route::get('stationupdates', 'App\Http\Controllers\SuperAdmin\WeatherStationUpdateController@index');
-Route::resource('updates', 'App\Http\Controllers\SuperAdmin\OTAController');
-Route::get('stationusers/{weather_station_id}', 'App\Http\Controllers\WeatherStationUserController@show');
-Route::put('stationusers/{weather_station_id}', 'App\Http\Controllers\WeatherStationUserController@update');
+//Route::get('send-mail','App\Http\Controllers\MailController@mailsend');
+//Route::delete('user/{user}','App\Http\Controllers\Admin\UserController@delete');
 
 
 //LOGGED USER
@@ -90,7 +89,7 @@ Route::middleware(['auth', 'superadmin'])->prefix('super')->namespace('App\Http\
     //ORGANISATION
     Route::resource('organisations', 'SuperAdmin\OrganisationController');
     //USER
-    Route::get('users', 'SuperAdmin\UserController@index');
+    Route::resource('users', 'SuperAdmin\UserController');
     //WEATHERSTATIONS
     Route::resource('weatherstations', 'SuperAdmin\WeatherStationController');
     //OTA UPDATE

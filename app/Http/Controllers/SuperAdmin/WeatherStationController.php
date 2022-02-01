@@ -29,9 +29,10 @@ class WeatherStationController extends Controller
         return WeatherStation::with(['alarms','organisation'])->get();
     }
 
-    public function show(WeatherStation $weatherStation)
+    public function show($weatherStation)
     {
-        return $weatherStation;
+        $station = WeatherStation::findOrFail($weatherStation);
+        return $station;
     }
 
     public function store(Request $request)
