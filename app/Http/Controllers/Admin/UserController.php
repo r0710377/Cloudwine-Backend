@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ActivationMail;
+use App\Models\Organisation;
 use App\Models\User;
 use App\Models\WeatherStation;
 use App\Models\WeatherStationUser;
@@ -62,10 +63,12 @@ class UserController extends Controller
             ]
         ));
 
+        $organisatie = Organisation::where('id',auth()->user()->organisation_id)->first();
         //MAIL
         $details = [
             'title' => 'Welkom bij Wijnbouwer.be',
-            'body' => 'De administrator van xxx heeft u toegevoegd bij zijn organisatie, je kan jezelf inloggen op https://www.wijnbouwer.be/ met het onderstaande wachtwoord. Vergeet zeker je wachtwoord niet te veranderen',
+            'organisation' => $organisatie->name,
+            'body' => ' Heeft u toegevoegd bij de organisatie op wijnbouwer.be, je kan jezelf inloggen met het onderstaande wachtwoord. Vergeet zeker je wachtwoord niet te veranderen',
             'password' => $random
         ];
 
@@ -126,5 +129,12 @@ class UserController extends Controller
                 'message' => 'Deze gebruiker zit niet bij jouw organisatie',
             ], 401);
         }
+    }
+
+    // VERWIJDER DIT
+    public function delete(User $user)
+    {
+        $user->delete();
+        return response()->json(null, 204); //204 --> No content. When action was executed succesfully, but there is no content to return
     }
 }

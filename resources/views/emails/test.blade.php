@@ -5,10 +5,9 @@
     <h3>{{ $details['password'] }}</h3>
 
 @component('mail::button', ['url' => 'https://www.wijnbouwer.be/'])
-Naar Wijnbouwer.be
+    Naar Wijnbouwer.be
 @endcomponent
 
-Tot binnenkort!!,<br>
+Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
-

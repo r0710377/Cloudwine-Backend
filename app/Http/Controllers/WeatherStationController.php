@@ -23,7 +23,7 @@ class WeatherStationController extends Controller
             $weatherstation = WeatherStation::where('id',$weatherStation->id)->with(['organisation' => function($query){
                 $query->select(['id','name']);
             }])->get();
-            return response()->json($weatherstation->makeHidden(['gsm','relais_name','latitude','longitude','is_active','is_public','is_location_alarm','number_of_cycles','is_no_data_alarm']), 201); //201 --> Object created. Usefull for the store actions
+            return response()->json($weatherstation[0]->makeHidden(['gsm','relais_name','latitude','longitude','is_active','is_public','is_location_alarm','number_of_cycles','is_no_data_alarm']), 201); //201 --> Object created. Usefull for the store actions
         } else {
             return response()->json([
                 'message' => 'Dit weerstation is niet beschikbaar',

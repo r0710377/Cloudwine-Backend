@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ActivationMail extends Mailable
+class ForgotMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $details;
@@ -29,8 +29,8 @@ class ActivationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.activationMail')
+        return $this->markdown('emails.forgotMail')
             ->with('details', $this->details)
-            ->subject('Activatiemail wijnbouwer.be');
+            ->subject('Herstelling wachtwoord - wijnbouwer');
     }
 }

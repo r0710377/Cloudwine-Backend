@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Mail;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('test', function () {
+    return view('emails.activationMail');
+});
+
 Route::get('send-mail','App\Http\Controllers\MailController@mailsend');
 
 

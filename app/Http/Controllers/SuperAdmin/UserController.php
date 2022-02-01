@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Controller as Controller;
 use App\Mail\ActivationMail;
+use App\Mail\ActiveMail;
+use App\Mail\SendDemoMail;
 use App\Models\WeatherStation;
 use App\Models\WeatherStationUser;
 use Illuminate\Http\Request;
@@ -87,7 +89,8 @@ class UserController extends Controller
         //MAIL
         $details = [
             'title' => 'Welkom bij Wijnbouwer.be',
-            'body' => 'U bent toegewezen als administrator op wijnbouwer.be, je kan jezelf inloggen op https://www.wijnbouwer.be/ met het onderstaande wachtwoord. Vergeet zeker je wachtwoord niet te veranderen',
+            'organisation' => '',
+            'body' => 'U bent toegewezen als administrator op wijnbouwer.be, je kan jezelf inloggen met het onderstaande wachtwoord. Vergeet zeker je wachtwoord niet te veranderen',
             'password' => $random
         ];
 

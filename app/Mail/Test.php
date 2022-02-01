@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ActivationMail extends Mailable
+class Test extends Mailable
 {
     use Queueable, SerializesModels;
     public $details;
@@ -29,7 +29,7 @@ class ActivationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.activationMail')
+        return $this->markdown('emails.test')
             ->with('details', $this->details)
             ->subject('Activatiemail wijnbouwer.be');
     }

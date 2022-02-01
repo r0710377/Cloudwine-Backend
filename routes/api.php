@@ -26,11 +26,13 @@ Route::get('values/relais/{weatherStation}', 'App\Http\Controllers\ValueControll
 Route::get('values/battery/{weatherStation}', 'App\Http\Controllers\ValueController@battery');
 Route::get('values/location/{weatherStation}', 'App\Http\Controllers\ValueController@location');
 
-Route::post('/login', 'App\Http\Controllers\AuthController@login');
+Route::post('login', 'App\Http\Controllers\AuthController@login');
+Route::post('reset', 'App\Http\Controllers\User\PasswordController@reset');
 //Route::post('/register', 'App\Http\Controllers\AuthController@register');
 
 //VERWIJDEREN
-//Route::get('send-mail','App\Http\Controllers\MailController@mailsend');
+Route::get('send-mail','App\Http\Controllers\MailController@mailsend');
+Route::delete('user/{user}','App\Http\Controllers\Admin\UserController@delete');
 
 
 //LOGGED USER
