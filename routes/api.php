@@ -31,8 +31,8 @@ Route::post('reset', 'App\Http\Controllers\User\PasswordController@reset');
 //Route::post('/register', 'App\Http\Controllers\AuthController@register');
 
 //VERWIJDEREN
-Route::get('send-mail','App\Http\Controllers\MailController@mailsend');
-Route::delete('user/{user}','App\Http\Controllers\Admin\UserController@delete');
+//Route::get('send-mail','App\Http\Controllers\MailController@mailsend');
+//Route::delete('user/{user}','App\Http\Controllers\Admin\UserController@delete');
 
 
 //LOGGED USER
