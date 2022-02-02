@@ -45,7 +45,7 @@ node(){
         sh "sudo cp -a /var/lib/jenkins/workspace/cloudwine-backend/. /var/www/html/dist/cloudwine-backend"
         echo 'Copy completed'
       
-        sh 'sudo lftp sftp://r0710377:Kaka_1234@sinners.be -e "cd ventomatkr3/public_html && mput /var/www/html/dist/cloudwine-backend/*"'
+        sh 'sudo lftp sftp://r0710377:Kaka_1234@sinners.be -e "mirror -R /var/www/html/dist/cloudwine-backend /ventomatkr3/public_html"'
         sh 'exit'
         echo 'Successful deploy'
     }
