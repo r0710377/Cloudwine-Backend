@@ -25,6 +25,7 @@ node(){
     stage('Build') {
         nodejs('nodejs') {
              environment {
+                DB_CONNECTION = "mariadb"
                 DB_HOST = credentials("robincraft007.ddns.net")
                 DB_PORT= "53306"
                 DB_DATABASE = credentials("project")
@@ -32,6 +33,7 @@ node(){
                 DB_PASSWORD = credentials("project_password")
             }
             sh 'cp .env.example .env'
+            sh 'echo DB_CONNECTION=${DB_CONNECTION} >> .env'
             sh 'echo DB_HOST=${DB_HOST} >> .env'
             sh 'echo DB_PORT=${DB_PORT} >> .env'
             sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
