@@ -30,5 +30,17 @@ pipeline {
                 sh "vendor/bin/phpcs"
             }
         }
-  }
+     
+        /*stage ('Deploy') {
+            steps {
+                
+                sh "tar -zcvf bundle.tar.gz dist/cloudwine-frontend/"
+                sh "sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
+                echo 'Copy completed'
+      
+                sh 'sudo lftp sftp://r0710377:Kaka_1234@sinners.be -e "cd ventomatkr3/public_html && mput /var/www/html/dist/cloudwine-frontend/*"'
+                sh 'exit'
+                echo 'Successful deploy'
+            }
+        }*/
 }
