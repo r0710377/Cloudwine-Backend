@@ -17,9 +17,16 @@ node(){
         echo "Tests completed"
         discordSend description: "Running tests", footer: "Testing finished", result: currentBuild.currentResult, webhookURL: "https://discord.com/api/webhooks/938066793711411201/vpuwLXRQiNMzTGEngEsZJsN0eGYfI5BdWDIVWd1Vbcp5lhDcn4U-A476Dq2RaqVRGYbq"
     }
+    
+    stage("Code coverage") {
+        sh "vendor/bin/phpunit --coverage-html 'reports/coverage'"
+    }
   
     stage('Build') {
         nodejs('nodejs') {
+            sh 'cp .env.example .env'
+            sh 'php artisan key:generate'
+            sh 'php artisan migrate'
             sh 'npm run development'
             sh 'npm run production'
             echo "Build completed"
