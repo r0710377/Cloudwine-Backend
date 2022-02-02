@@ -49,15 +49,15 @@ class WeatherStationController extends Controller
     public function update(Request $request, WeatherStation $weatherStation)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|integer',
-            'relais_name' => 'required|integer',
-            'is_active' => 'required|boolean',
-            'is_public' => 'required|boolean',
-            'is_manual_relais' => 'required|boolean',
-            'switch_state' => 'required|boolean',
-            'is_location_alarm' => 'required|boolean',
-            'is_no_data_alarm' => 'required|boolean',
-            'number_of_cycles' => 'required|boolean',
+            'name' => 'integer',
+            'relais_name' => 'integer',
+            'is_active' => 'boolean',
+            'is_public' => 'boolean',
+            'is_manual_relais' => 'boolean',
+            'switch_state' => 'boolean',
+            'is_location_alarm' => 'boolean',
+            'is_no_data_alarm' => 'boolean',
+            'number_of_cycles' => 'integer',
         ]);
 
         if($validator->fails()){

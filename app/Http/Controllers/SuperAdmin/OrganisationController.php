@@ -16,11 +16,12 @@ class OrganisationController extends Controller
         if($status == 2){
             $organisation = Organisation::where('is_active', 0)->get();
         } else if($status == 1){
-            $organisation = Organisation::get();
+            $organisation = Organisation::all();
         } else {
             $organisation = Organisation::where('is_active', 1)->get();
         }
         return response()->json($organisation,200);
+
     }
 
     public function show(Organisation $organisation)

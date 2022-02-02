@@ -63,5 +63,11 @@ class ValueController extends Controller
 
         return response()->json('data is created',201); //201 --> Object created. Usefull for the store actions
 
+        //get all alarms from the weatherstation
+
+
+        //send emails to all users from the station's organisation
+
+
     }
 }
