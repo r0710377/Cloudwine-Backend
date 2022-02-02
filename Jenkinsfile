@@ -14,7 +14,7 @@ node(){
     stage('Test') {
         /*sh 'php ./vendor/bin/phpunit tests/Unit/ExampleTest.php'
         sh 'php ./vendor/bin/phpunit tests/Feature/ExampleTest.php'*/
-        sh 'php ./vendor/bin/phpunit test'
+        sh 'php artisan test'
         echo "Tests completed"
         discordSend description: "Running tests", footer: "Testing finished", result: currentBuild.currentResult, webhookURL: "https://discord.com/api/webhooks/938066793711411201/vpuwLXRQiNMzTGEngEsZJsN0eGYfI5BdWDIVWd1Vbcp5lhDcn4U-A476Dq2RaqVRGYbq"
     }
