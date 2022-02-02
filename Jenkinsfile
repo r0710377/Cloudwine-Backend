@@ -22,6 +22,7 @@ node(){
         nodejs('nodejs') {
              environment {
                 DB_HOST = credentials("robincraft007.ddns.net")
+                DB_PORT = "53306"
                 DB_DATABASE = credentials("project")
                 DB_USERNAME = credentials("project_user")
                 DB_PASSWORD = credentials("project_password")
@@ -34,6 +35,7 @@ node(){
             }
             sh 'cp .env.example .env'
             sh 'echo DB_HOST=${DB_HOST} >> .env'
+            sh 'echo DB_PORT=${DB_PORT} >> .env'
             sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
             sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
             sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
