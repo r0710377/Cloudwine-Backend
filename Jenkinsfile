@@ -1,48 +1,39 @@
-pipeline {
- agent any
- stages {
-       stage("Build") {
-            steps {
-                sh 'php --version'
-                sh 'composer install'
-                sh 'composer --version'
-                sh 'cp .env.example .env'
-                sh 'php artisan key:generate'
-            }
+node(){
+    stage('Cloning Git') {
+        checkout scm
+    }
+        
+    stage('Install dependencies') {
+        nodejs('nodejs') {
+            sh 'npm install'
+            echo "Modules installed"             
         }
-        stage("Unit test") {
-            steps {
-                sh 'php ./vendor/bin/phpunit tests/Feature/ExampleTest.php'
-                sh 'php ./vendor/bin/phpunit tests/Unit/ExampleTest.php'
-            }
+    }
+  
+    stage('Test') {
+        nodejs('nodejs') {
+            sh 'npm run test'
+            echo "Tests completed"
+            discordSend description: "Running tests", footer: "Testing finished", result: currentBuild.currentResult, webhookURL: "https://discord.com/api/webhooks/938066793711411201/vpuwLXRQiNMzTGEngEsZJsN0eGYfI5BdWDIVWd1Vbcp5lhDcn4U-A476Dq2RaqVRGYbq"
         }
-        stage("Code coverage") {
-            steps {
-                sh "vendor/bin/phpunit tests/Feature/ExampleTest.php --coverage-html 'reports/coverage'"
-            }
+    }
+  
+    stage('Build') {
+        nodejs('nodejs') {
+            sh 'npm run build'
+            echo "Build completed"
         }
-        stage("Static code analysis larastan") {
-            steps {
-                sh "vendor/bin/phpstan analyse --memory-limit=2G"
-            }
-        }
-        stage("Static code analysis phpcs") {
-            steps {
-                sh "vendor/bin/phpcs"
-            }
-        }
-     
-        /*stage ('Deploy') {
-            steps {
-                
-                sh "tar -zcvf bundle.tar.gz dist/cloudwine-frontend/"
-                sh "sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
-                echo 'Copy completed'
+    }
+ 
+
+    /*stage ('Deploy') {
+        sh "tar -zcvf bundle.tar.gz dist/cloudwine-frontend/"
+        sh "sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
+        echo 'Copy completed'
       
-                sh 'sudo lftp sftp://r0710377:Kaka_1234@sinners.be -e "cd ventomatkr3/public_html && mput /var/www/html/dist/cloudwine-frontend/*"'
-                sh 'exit'
-                echo 'Successful deploy'
-            }
-        }*/
-}
+        sh 'sudo lftp sftp://r0710377:Kaka_1234@sinners.be -e "cd r0710377/public_html && mput /var/www/html/dist/cloudwine-frontend/*"'
+        sh 'exit'
+        echo 'Successful deploy'
+    }*/
+  
 }
