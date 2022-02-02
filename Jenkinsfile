@@ -29,7 +29,7 @@ node(){
                 APP_NAME = 'Laravel'
                 APP_ENV = 'production'
                 APP_DEBUG = false
-                APP_URL = https://ventomatkr3.sinners.be
+                APP_URL = 'https://ventomatkr3.sinners.be'
                 
             }
             sh 'cp .env.example .env'
