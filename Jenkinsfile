@@ -24,7 +24,17 @@ node(){
   
     stage('Build') {
         nodejs('nodejs') {
+             environment {
+                DB_HOST = credentials("robincraft007.ddns.net")
+                DB_DATABASE = credentials("project")
+                DB_USERNAME = credentials("project_user")
+                DB_PASSWORD = credentials("project_password")
+            }
             sh 'cp .env.example .env'
+            sh 'echo DB_HOST=${DB_HOST} >> .env'
+            sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
+            sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
+            sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
             sh 'php artisan key:generate'
             sh 'php artisan migrate'
             sh 'npm run development'
