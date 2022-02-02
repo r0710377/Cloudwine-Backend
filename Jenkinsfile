@@ -26,8 +26,8 @@ node(){
                 DB_USERNAME = credentials("project_user")
                 DB_PASSWORD = credentials("project_password")
                 
-                APP_NAME = Laravel
-                APP_ENV = production
+                APP_NAME = 'Laravel'
+                APP_ENV = 'production'
                 APP_DEBUG = false
                 APP_URL = https://ventomatkr3.sinners.be
                 
