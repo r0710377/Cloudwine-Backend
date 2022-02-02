@@ -32,7 +32,6 @@ node(){
                 DB_PASSWORD = credentials("project_password")
             }
             sh 'cp .env.example .env'
-            sh 'echo DB_CONNECTION=${DB_CONNECTION} >> .env'
             sh 'echo DB_HOST=${DB_HOST} >> .env'
             sh 'echo DB_PORT=${DB_PORT} >> .env'
             sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
