@@ -6,21 +6,22 @@ node(){
     stage('Install dependencies') {
         nodejs('nodejs') {
             sh 'npm install'
+            sh 'composer install'
             echo "Modules installed"             
         }
     }
   
     stage('Test') {
-        nodejs('nodejs') {
-            sh 'npm run test'
-            echo "Tests completed"
-            discordSend description: "Running tests", footer: "Testing finished", result: currentBuild.currentResult, webhookURL: "https://discord.com/api/webhooks/938066793711411201/vpuwLXRQiNMzTGEngEsZJsN0eGYfI5BdWDIVWd1Vbcp5lhDcn4U-A476Dq2RaqVRGYbq"
-        }
+        sh 'php ./vendor/bin/phpunit tests/Unit/ExampleTest.php'
+        sh 'php ./vendor/bin/phpunit tests/Feature/ExampleTest.php'
+        echo "Tests completed"
+        discordSend description: "Running tests", footer: "Testing finished", result: currentBuild.currentResult, webhookURL: "https://discord.com/api/webhooks/938066793711411201/vpuwLXRQiNMzTGEngEsZJsN0eGYfI5BdWDIVWd1Vbcp5lhDcn4U-A476Dq2RaqVRGYbq"
     }
   
     stage('Build') {
         nodejs('nodejs') {
-            sh 'npm run build'
+            sh 'npm run development'
+            sh 'npm run production'
             echo "Build completed"
         }
     }
