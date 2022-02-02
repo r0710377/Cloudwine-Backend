@@ -30,6 +30,10 @@ node(){
             sh 'echo APP_NAME=Laravel >> .env'
             sh 'echo APP_DEBUG=false >> .env'
             sh 'echo APP_URL=https://ventomatkr3.sinners.be >> .env'
+            
+            sh 'sudo chmod o+w storage'
+            sh 'sudo chmod o+w bootstrap/cache'
+            
             sh 'php artisan key:generate'
             sh 'php artisan migrate'
             echo "Build completed"
