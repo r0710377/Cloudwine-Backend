@@ -22,7 +22,6 @@ node(){
         nodejs('nodejs') {
         
             sh 'cp .env.example .env'
-            sh 'echo DB_CONNECTION=mariadb} >> .env'
             sh 'echo DB_HOST=robincraft007.ddns.net >> .env'
             sh 'echo DB_PORT=53306 >> .env'
             sh 'echo DB_USERNAME=project >> .env'
