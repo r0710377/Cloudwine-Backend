@@ -20,20 +20,7 @@ node(){
   
     stage('Build') {
         nodejs('nodejs') {
-             environment {
-                DB_CONNECTION = "mysql"
-                DB_HOST = credentials("robincraft007.ddns.net")
-                DB_PORT = "53306"
-                DB_DATABASE = credentials("project")
-                DB_USERNAME = credentials("project_user")
-                DB_PASSWORD = credentials("project_password")
-                
-                APP_NAME = 'Laravel'
-                APP_ENV = 'production'
-                APP_DEBUG = false
-                APP_URL = 'https://ventomatkr3.sinners.be'
-                
-            }
+        
             sh 'cp .env.example .env'
             sh 'echo DB_CONNECTION=mariadb} >> .env'
             sh 'echo DB_HOST=robincraft007.ddns.net >> .env'
@@ -42,7 +29,6 @@ node(){
             sh 'echo DB_DATABASE=project_user >> .env'
             sh 'echo DB_PASSWORD=project_password >> .env'
             sh 'echo APP_NAME=Laravel >> .env'
-            sh 'echo APP_ENV=production >> .env'
             sh 'echo APP_DEBUG=false >> .env'
             sh 'echo APP_URL=https://ventomatkr3.sinners.be >> .env'
             sh 'php artisan key:generate'
