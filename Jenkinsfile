@@ -45,14 +45,13 @@ node(){
     }
  
 
-    /*stage ('Deploy') {
-        sh "tar -zcvf bundle.tar.gz dist/cloudwine-frontend/"
-        sh "sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
+    stage ('Deploy') {
+        sh "sudo cp -a /var/lib/jenkins/workspace/cloudwine-backend/. /var/www/html/dist/cloudwine-backend"
         echo 'Copy completed'
       
-        sh 'sudo lftp sftp://r0710377:Kaka_1234@sinners.be -e "cd r0710377/public_html && mput /var/www/html/dist/cloudwine-frontend/*"'
+        sh 'sudo lftp sftp://r0710377:Kaka_1234@sinners.be -e "cd ventomatkr3/public_html && mput /var/www/html/dist/cloudwine-backend/*"'
         sh 'exit'
         echo 'Successful deploy'
-    }*/
+    }
   
 }
