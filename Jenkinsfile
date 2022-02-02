@@ -24,7 +24,7 @@ node(){
   
     stage('Build') {
         nodejs('nodejs') {
-             environment {
+             /*environment {
                 DB_CONNECTION = "mariadb"
                 DB_HOST = credentials("robincraft007.ddns.net")
                 DB_PORT= "53306"
@@ -38,7 +38,7 @@ node(){
             sh 'echo DB_PORT=${DB_PORT} >> .env'
             sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
             sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
-            sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
+            sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'*/
             sh 'php artisan key:generate'
             sh 'php artisan migrate'
             sh 'npm run production'
