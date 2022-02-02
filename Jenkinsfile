@@ -21,7 +21,7 @@ node(){
     stage('Build') {
         nodejs('nodejs') {
              environment {
-                DB_CONNECTION = "mariadb"
+                DB_CONNECTION = "mysql"
                 DB_HOST = credentials("robincraft007.ddns.net")
                 DB_PORT = "53306"
                 DB_DATABASE = credentials("project")
